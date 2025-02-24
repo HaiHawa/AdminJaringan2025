@@ -42,13 +42,13 @@ Pada gambar diatas menunjukkan 0,911310 detik adalah waktu ketika client mengiri
 3,955688 detik adalah waktu dari server merespon HTTP request.
 
 <img src="image/6.png">
-Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969. Maka durasi yang dibutuhkan adalah 4,846969 – 3,955688 = 0,891281 detik.
+Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969. Maka durasi yang dibutuhkan adalah 4,846969 – 3,955688 = 0,891281 detik. 
 
-<br />
+
 
 **2.	Deskripsi gambar pada slide.**
 
-<img src="image/7.png">
+<img src="image/7.jpg">
  
 Gambar diatas menunjukkan jenis-jenis pengiriman data dalam jaringan, mulai dari node to node, host to host, hingga proses to proses.
 
@@ -63,24 +63,39 @@ Komunikasi ini biasanya mengikuti pola klien/server, di mana satu proses meminta
 
 
 
+
 **3. Rangkuman tahapan komunikasi menggunakan TCP**
 
 Komunikasi menggunakan TCP (Transmission Control Protocol) melibatkan beberapa tahapan penting untuk memastikan pengiriman data yang andal dan terurut antara dua proses. Berikut adalah rangkuman tahapan komunikasi menggunakan TCP:
 
 1.	Pembentukan Koneksi (Three-Way Handshake):
+
 •	SYN: Klien mengirimkan segmen SYN (synchronize) ke server untuk memulai koneksi.
+
 •	SYN-ACK: Server merespons dengan segmen SYN-ACK (synchronize-acknowledge) untuk mengonfirmasi penerimaan SYN.
+
 •	ACK: Klien mengirimkan segmen ACK (acknowledge) ke server untuk menyelesaikan handshake dan membangun koneksi.
 
 2.	Data Transmission:
+
 •	Setelah koneksi terbentuk, data dapat dikirimkan antara klien dan server.
+
 •	TCP memastikan data dikirim secara terurut dengan menggunakan mekanisme seperti acknowledgment, retransmission, dan flow control.
 
 3.	Pengakhiran Koneksi (Four-Way Handshake):
+
 •	FIN: Salah satu pihak (biasanya klien) mengirimkan segmen FIN (finish) untuk menunjukkan bahwa mereka ingin mengakhiri koneksi.
+
 •	ACK: Pihak lain (server) mengirimkan segmen ACK untuk mengonfirmasi penerimaan FIN.
+
 •	FIN: Server kemudian mengirimkan segmen FIN sendiri untuk menunjukkan bahwa mereka juga siap mengakhiri koneksi.
+
 •	ACK: Klien mengirimkan segmen ACK terakhir untuk mengonfirmasi penerimaan FIN dari server, dan koneksi ditutup.
+
+### Referensi
+
+- [Transmission Control Protocol/Internet Protocol](https://online.binus.ac.id/2021/09/24/tcp-ip-transmission-control-protocol-internet-protocol/)
+- [Transmission Control Protocol](https://www.exabytes.co.id/blog/transmission-control-protocol/)
 
 
 
