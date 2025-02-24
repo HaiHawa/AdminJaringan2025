@@ -19,7 +19,6 @@
 **Versi HTTP yang digunakan**
 
 <img src="image/1.png">
- 
 Pada gambar diatas menunjukkan bahwa versi HTTP yang digunakan adalah HTTP/1.1
 Hal ini dapat dilihat pada baris ke-4 dalam kolom Info, di mana terdapat permintaan GET /download.html HTTP/1.1 yang menunjukkan bahwa komunikasi menggunakan protokol HTTP versi 1.1.
 
@@ -27,23 +26,21 @@ Hal ini dapat dilihat pada baris ke-4 dalam kolom Info, di mana terdapat permint
 
  <img src="image/2.png">
  <img src="image/3.png">
- 
 IP Address client : 145.254.160.237
 IP Address Server : 65.208.228.223
 
 **Waktu dari client mengirimkan HTTP request.**
+
 <img src="image/4.png">
- 
 Pada gambar diatas menunjukkan 0,911310 detik adalah waktu ketika client mengirimkan HTTP request.
 
 **Waktu dari server mengirimkan server dan berapa durasinya**
+
 <img src="image/5.png">
- 
 3,955688 detik adalah waktu dari server merespon HTTP request.
 
 <img src="image/6.png">
 Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969. Maka durasi yang dibutuhkan adalah 4,846969 – 3,955688 = 0,891281 detik. 
-
 
 
 **2. Deskripsi gambar pada slide.**
@@ -72,21 +69,21 @@ Komunikasi menggunakan TCP (Transmission Control Protocol) melibatkan beberapa t
 
 1.	Pembentukan Koneksi (Three-Way Handshake):
 
-  - SYN: Klien mengirimkan segmen SYN (synchronize) ke server untuk memulai koneksi.  
-  - SYN-ACK: Server merespons dengan segmen SYN-ACK (synchronize-acknowledge) untuk mengonfirmasi penerimaan SYN.
-  - ACK: Klien mengirimkan segmen ACK (acknowledge) ke server untuk menyelesaikan handshake dan membangun koneksi.
+    - SYN: Klien mengirimkan segmen SYN (synchronize) ke server untuk memulai koneksi.  
+    - SYN-ACK: Server merespons dengan segmen SYN-ACK (synchronize-acknowledge) untuk mengonfirmasi penerimaan SYN.
+    - ACK: Klien mengirimkan segmen ACK (acknowledge) ke server untuk menyelesaikan handshake dan membangun koneksi.
 
 2.	Data Transmission:
 
-  - Setelah koneksi terbentuk, data dapat dikirimkan antara klien dan server.
-  - TCP memastikan data dikirim secara terurut dengan menggunakan mekanisme seperti acknowledgment, retransmission, dan flow control.
+    - Setelah koneksi terbentuk, data dapat dikirimkan antara klien dan server.
+    - TCP memastikan data dikirim secara terurut dengan menggunakan mekanisme seperti acknowledgment, retransmission, dan flow control.
 
 3.	Pengakhiran Koneksi (Four-Way Handshake):
 
-  - FIN: Salah satu pihak (biasanya klien) mengirimkan segmen FIN (finish) untuk menunjukkan bahwa mereka ingin mengakhiri koneksi.
-  - ACK: Pihak lain (server) mengirimkan segmen ACK untuk mengonfirmasi penerimaan FIN.
-  - FIN: Server kemudian mengirimkan segmen FIN sendiri untuk menunjukkan bahwa mereka juga siap mengakhiri koneksi.
-  -  ACK: Klien mengirimkan segmen ACK terakhir untuk mengonfirmasi penerimaan FIN dari server, dan koneksi ditutup.
+    - FIN: Salah satu pihak (biasanya klien) mengirimkan segmen FIN (finish) untuk menunjukkan bahwa mereka ingin mengakhiri koneksi.
+    - ACK: Pihak lain (server) mengirimkan segmen ACK untuk mengonfirmasi penerimaan FIN.
+    - FIN: Server kemudian mengirimkan segmen FIN sendiri untuk menunjukkan bahwa mereka juga siap mengakhiri koneksi.
+    -  ACK: Klien mengirimkan segmen ACK terakhir untuk mengonfirmasi penerimaan FIN dari server, dan koneksi ditutup.
 
 ### Referensi
 
