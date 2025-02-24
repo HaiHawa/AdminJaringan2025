@@ -28,8 +28,7 @@ Hal ini dapat dilihat pada baris ke-4 dalam kolom Info, di mana terdapat permint
  <img src="image/2.png">
  <img src="image/3.png">
 
-IP Address client : 145.254.160.237
-IP Address Server : 65.208.228.223
+IP Address client : 145.254.160.237<br>IP Address Server : 65.208.228.223
 
 **Waktu dari client mengirimkan HTTP request.**
 
@@ -45,8 +44,7 @@ Pada gambar diatas menunjukkan 0,911310 detik adalah waktu ketika client mengiri
 
 <img src="image/6.png">
 
-Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969. 
-Maka durasi yang dibutuhkan adalah 
+Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969.<br>Maka durasi yang dibutuhkan adalah 
 4,846969 – 3,955688 = 0,891281 detik. 
 
 
