@@ -44,6 +44,7 @@ Pada gambar diatas menunjukkan 0,911310 detik adalah waktu ketika client mengiri
 3,955688 detik adalah waktu dari server merespon HTTP request.
 
 <img src="image/6.png">
+
 Dari gambar diatas terlihat bahwa waktu untuk menyelesaikan 1 sesi adalah 4,846969. Maka durasi yang dibutuhkan adalah 4,846969 – 3,955688 = 0,891281 detik. 
 
 
