@@ -19,6 +19,7 @@
 **Versi HTTP yang digunakan**
 
 <img src="image/1.png">
+
 Pada gambar diatas menunjukkan bahwa versi HTTP yang digunakan adalah HTTP/1.1
 Hal ini dapat dilihat pada baris ke-4 dalam kolom Info, di mana terdapat permintaan GET /download.html HTTP/1.1 yang menunjukkan bahwa komunikasi menggunakan protokol HTTP versi 1.1.
 
@@ -26,17 +27,20 @@ Hal ini dapat dilihat pada baris ke-4 dalam kolom Info, di mana terdapat permint
 
  <img src="image/2.png">
  <img src="image/3.png">
+
 IP Address client : 145.254.160.237
 IP Address Server : 65.208.228.223
 
 **Waktu dari client mengirimkan HTTP request.**
 
 <img src="image/4.png">
+
 Pada gambar diatas menunjukkan 0,911310 detik adalah waktu ketika client mengirimkan HTTP request.
 
 **Waktu dari server mengirimkan server dan berapa durasinya**
 
 <img src="image/5.png">
+
 3,955688 detik adalah waktu dari server merespon HTTP request.
 
 <img src="image/6.png">
