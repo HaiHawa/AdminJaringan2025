@@ -56,7 +56,7 @@ Gambar diatas menunjukkan jenis-jenis pengiriman data dalam jaringan, mulai dari
 
 2.	Selanjutnya pengiriman Host to host ini juga menunjukkan dua komputer yang terhubung melalui internet. Data dikirim dari satu komputer ke komputer lainnya melalui beberapa node, yang merupakan tugas lapisan jaringan.
 
-3.	Pengiriman Proses to proses. Komunikasi sebenarnya terjadi antara dua proses, bukan hanya antar perangkat. Seperti yang ditunjukkan dalam gambar, ada dokumen yang mewakili proses yang berkomunikasi melalui jaringan. Ini adalah tanggung jawab lapisan transport, yang memastikan data dikirim ke proses yang tepat di komputer tujuan.
+3.  Pengiriman Proses to proses. Komunikasi sebenarnya terjadi antara dua proses, bukan hanya antar perangkat. Seperti yang ditunjukkan dalam gambar, ada dokumen yang mewakili proses yang berkomunikasi melalui jaringan. Ini adalah tanggung jawab lapisan transport, yang memastikan data dikirim ke proses yang tepat di komputer tujuan.
 
 Komunikasi ini biasanya mengikuti pola klien/server, di mana satu proses meminta layanan, dan proses lainnya memberikan respons.
 
@@ -70,27 +70,21 @@ Komunikasi menggunakan TCP (Transmission Control Protocol) melibatkan beberapa t
 
 1.	Pembentukan Koneksi (Three-Way Handshake):
 
-•	SYN: Klien mengirimkan segmen SYN (synchronize) ke server untuk memulai koneksi.
-
-•	SYN-ACK: Server merespons dengan segmen SYN-ACK (synchronize-acknowledge) untuk mengonfirmasi penerimaan SYN.
-
-•	ACK: Klien mengirimkan segmen ACK (acknowledge) ke server untuk menyelesaikan handshake dan membangun koneksi.
+  •	  SYN: Klien mengirimkan segmen SYN (synchronize) ke server untuk memulai koneksi.
+  •	  SYN-ACK: Server merespons dengan segmen SYN-ACK (synchronize-acknowledge) untuk mengonfirmasi penerimaan SYN.
+  •	  ACK: Klien mengirimkan segmen ACK (acknowledge) ke server untuk menyelesaikan handshake dan membangun koneksi.
 
 2.	Data Transmission:
 
-•	Setelah koneksi terbentuk, data dapat dikirimkan antara klien dan server.
-
-•	TCP memastikan data dikirim secara terurut dengan menggunakan mekanisme seperti acknowledgment, retransmission, dan flow control.
+  •	  Setelah koneksi terbentuk, data dapat dikirimkan antara klien dan server.
+  •	  TCP memastikan data dikirim secara terurut dengan menggunakan mekanisme seperti acknowledgment, retransmission, dan flow control.
 
 3.	Pengakhiran Koneksi (Four-Way Handshake):
 
-•	FIN: Salah satu pihak (biasanya klien) mengirimkan segmen FIN (finish) untuk menunjukkan bahwa mereka ingin mengakhiri koneksi.
-
-•	ACK: Pihak lain (server) mengirimkan segmen ACK untuk mengonfirmasi penerimaan FIN.
-
-•	FIN: Server kemudian mengirimkan segmen FIN sendiri untuk menunjukkan bahwa mereka juga siap mengakhiri koneksi.
-
-•	ACK: Klien mengirimkan segmen ACK terakhir untuk mengonfirmasi penerimaan FIN dari server, dan koneksi ditutup.
+  •	  FIN: Salah satu pihak (biasanya klien) mengirimkan segmen FIN (finish) untuk menunjukkan bahwa mereka ingin mengakhiri koneksi.
+  •	  ACK: Pihak lain (server) mengirimkan segmen ACK untuk mengonfirmasi penerimaan FIN.
+  •	  FIN: Server kemudian mengirimkan segmen FIN sendiri untuk menunjukkan bahwa mereka juga siap mengakhiri koneksi.
+  •	  ACK: Klien mengirimkan segmen ACK terakhir untuk mengonfirmasi penerimaan FIN dari server, dan koneksi ditutup.
 
 ### Referensi
 
