@@ -16,10 +16,10 @@
 
 ---
 
-#### Instalisasi Debian dan Oracle Virtual Box di Linux
+### Instalisasi Debian dan Oracle Virtual Box di Linux
 
 
-##### Solve LAN Wired Not Connected
+#### Solve LAN Wired Not Connected
 
 
 <img src="images/1.jpg">
@@ -29,7 +29,7 @@
 Perintah diatas digunakan untuk meminta atau memperbarui alamat IP dari server DHCP (Dynamic Host Configuration Protocol).
 
 
-##### Clone Github
+#### Clone Github
 
 Install git
 
@@ -50,7 +50,7 @@ Selanjutnya melakukan git clone dengan perintah dibawah ini
     git clone https://github.com/ferryastika/unix-and-linux-sysadmin-notes.git
 
 
-##### Cek OS
+#### Cek OS
 
 <img src="images/4.png">
 
@@ -58,7 +58,7 @@ Selanjutnya melakukan git clone dengan perintah dibawah ini
 
 Dengan perintah diatas dapat menampilkan informasi lengkap tentang sistem operasi Linux yang sedang digunakan.
 
-##### Download VirtualBox 
+#### Download VirtualBox 
 
 <img src="images/5.jpg">
 
@@ -66,14 +66,14 @@ Dengan perintah diatas dapat menampilkan informasi lengkap tentang sistem operas
 Download Virtual sesuai dengan OS yang digunakan. Saat ini komputer yang saya pakai menggunakan OS 12 jadi unduh Debian 12.
 
 
-##### Download ISO Debian 12
+#### Download ISO Debian 12
 
 <img src="images/6.jpg">
 
     https://www.debian.org/download
 ISO di VirtualBox adalah file image disk yang digunakan untuk menginstal atau menjalankan sistem operasi tanpa CD/DVD fisik. File ini berguna untuk instalasi OS, booting Live OS, serta recovery & maintenance. 
 
-##### Install VirtualBox
+#### Install VirtualBox
 
 <img src="images/7.jpg">
 
@@ -90,7 +90,7 @@ Menggunakan perintah dibawah ini untuk menginstal paket VirtualBox secara manual
 Perintah diatas digunakan untuk menginstal pustaka libxcb-cursor0 di sistem berbasis Debian/Ubuntu
 
 
-##### Solving Error VirtualBox
+#### Solving Error VirtualBox
 
 <img src="images/9.png">
 
@@ -102,7 +102,7 @@ Solve error diatas menggunakakn perintah dibawah ini:
  Menambahkan pengguna ke grup vboxusers agar dapat menggunakan fitur USB di VirtualBox.
 
 
-##### Oracle VirtualBox Manager
+#### Oracle VirtualBox Manager
 
 Membuat New Virtual Machine, berikut:
 
@@ -131,7 +131,7 @@ Terakhir, dapat meninjau kembali konfigurasi yang telah dipilih sebelum menekan 
 
 <img src="images/16.png">
 
-##### Kernel Error
+#### Kernel Error
 
 <img src="images/17.png">
 
@@ -144,7 +144,7 @@ Gunakan perintah berikut untuk memperbaiki error pada kernel:
 <img src="images/18.png">
 <img src="images/19.png">
 
-##### Run Virtual Machine
+#### Run Virtual Machine
 
 Jalankan proses instalasi dan tunggu hingga Debian di VM terpasang serta terinisialisasi dengan sempurna.
 
