@@ -18,12 +18,12 @@
 
 ## Chapter 6: Instalasi dan Manajemen Perangkat Lunak
 
-⸻⸻⸻⸻⸻⸻⸻
+
 
 #### Instalasi Sistem Operasi
 Distribusi Linux dan FreeBSD menyediakan prosedur sederhana untuk instalasi dasar. Pada perangkat fisik, proses booting dapat dilakukan melalui CD, DVD, atau USB. Sementara itu, mesin virtual dapat memanfaatkan file ISO untuk booting. Instalasi OS dari media lokal menjadi lebih mudah dengan bantuan antarmuka grafis yang memandu pengguna sepanjang proses.
 
-⸻⸻⸻⸻⸻⸻⸻
+
 
 #### Instalasi dari Jaringan
 Menginstal OS di banyak komputer menggunakan media lokal kurang efisien karena memakan waktu, berisiko terjadi kesalahan, dan harus dilakukan berulang kali. Alternatif yang lebih praktis adalah instalasi melalui server jaringan, yang umum digunakan di pusat data dan lingkungan cloud.
@@ -33,7 +33,7 @@ Proses instalasi juga bisa dilakukan secara otomatis menggunakan PXE (Preboot eX
 
 PXE berfungsi sebagai OS kecil yang tertanam dalam ROM kartu jaringan. Teknologi ini menyediakan akses jaringan melalui API standar yang dapat dimanfaatkan oleh BIOS sistem. Dengan demikian, boot loader dapat melakukan netboot pada komputer yang mendukung PXE tanpa perlu driver tambahan untuk setiap kartu jaringan.
 
-⸻⸻⸻⸻⸻⸻⸻
+
 
 #### Sistem Manajemen Paket Linux
 Menggunakan dua format utama:
