@@ -63,6 +63,7 @@ Dengan perintah diatas dapat menampilkan informasi lengkap tentang sistem operas
 <img src="images/5.jpg">
 
 https://www.virtualbox.org/wiki/Linux_Downloads
+
 Download Virtual sesuai dengan OS yang digunakan. Saat ini komputer yang saya pakai menggunakan OS 12 jadi unduh Debian 12.
 
 
@@ -71,6 +72,7 @@ Download Virtual sesuai dengan OS yang digunakan. Saat ini komputer yang saya pa
 <img src="images/6.jpg">
 
 https://www.debian.org/download
+
 ISO di VirtualBox adalah file image disk yang digunakan untuk menginstal atau menjalankan sistem operasi tanpa CD/DVD fisik. File ini berguna untuk instalasi OS, booting Live OS, serta recovery & maintenance. 
 
 #### Install VirtualBox
