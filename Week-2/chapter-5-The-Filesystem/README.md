@@ -16,7 +16,7 @@
 
 ---
 
-## Bab 5: Sistem Berkas
+# Bab 5: Sistem Berkas
 
  <img src="images/5.0.png">
 
@@ -27,12 +27,12 @@ Model keamanan – perlindungan, penyembunyian, dan berbagi data
 Implementasi – perangkat lunak yang menghubungkan sistem berkas dengan perangkat keras
 Beberapa sistem berkas berbasis disk yang umum digunakan adalah ext4, XFS, UFS, ZFS, dan Btrfs. Ada juga sistem berkas asing seperti FAT, NTFS (Windows), dan ISO 9660 (CD/DVD). Sistem berkas modern berfokus pada peningkatan kecepatan, keandalan, serta fitur tambahan di atas sistem tradisional.
 
-### Pathnames 
+## Pathnames 
 Dalam konteks teknis, istilah yang tepat adalah direktori, bukan folder. Nama path (pathname) menunjukkan lokasi suatu file dalam sistem berkas dan dapat berupa:
 Path absolut → menunjukkan lokasi lengkap (misalnya /home/username/file.txt)
 Path relatif → menunjukkan lokasi berdasarkan posisi saat ini (misalnya ./file.txt)
 
-### Filesystem Mounting and Unmounting 
+## Filesystem Mounting and Unmounting 
 Sistem berkas terdiri dari bagian-bagian kecil yang disebut sistem berkas, yang memiliki direktori, subdirektori, dan berkas. Pohon berkas menggambarkan tata letak keseluruhan, sedangkan sistem berkas adalah cabang yang dilekatkan ke pohon tersebut menggunakan perintah mount. Perintah mount memetakan direktori di dalam pohon berkas yang ada, yang disebut titik mount, ke root dari sistem berkas yang baru.
 Contoh:
 
@@ -74,7 +74,7 @@ Contoh:
     abdou     91011  0.0  0.0  12345  1234 ?        Ssl  00:00   0:00 chrome
 
 
-###  Pengorganisasian pohon berkas
+## Pengorganisasian pohon berkas
 Sistem UNIX memiliki struktur yang kurang terorganisir dengan baik karena berbagai konvensi penamaan yang tidak kompatibel dan penyebaran berkas yang tidak teratur.
 Struktur Root Filesystem
 - **Root filesystem** → Berisi direktori root (/) dan berkas minimal yang dibutuhkan. Kernel OS biasanya ada di /boot, tetapi lokasinya bisa berbeda.
@@ -93,7 +93,7 @@ Baik **/usr** maupun **/var** harus tersedia agar sistem bisa masuk ke mode mult
 
 <img src="images/5.1.png">
 
-### Jenis-jenis file
+## Jenis-jenis file
 Sebagian besar implementasi sistem berkas mendefinisikan tujuh jenis berkas:
 
 1. File biasa
@@ -144,7 +144,7 @@ Contoh:
         ls -l /usr/bin
         lrwxrwxrwx 1 root root 4 Mar  1  2020 /usr/bin -> /bin
 
-### Atribut file
+## Atribut file
 
 Setiap file memiliki 9 bit hak akses yang menentukan izin membaca (r), menulis (w), dan mengeksekusi (x) untuk pemilik, grup, dan lainnya.
 
@@ -213,7 +213,7 @@ Contoh untuk file perangkat:
 c: Menunjukkan file perangkat karakter.
 4, 0: Nomor perangkat mayor dan minor.
 
-- chmod – Mengubah hak akses file.
+**chmod – Mengubah hak akses file.**
 
  <img src="images/5.4.png">
 
@@ -271,7 +271,7 @@ Contoh:
 Sebagai contoh, umask 027 mengizinkan rwx untuk pemilik, rx untuk grup, dan tidak ada izin untuk orang lain.
 
 
-### Daftar Kontrol Akses
+## Daftar Kontrol Akses
 
 
 Model perizinan Unix tradisional efektif tetapi memiliki keterbatasan, seperti tidak bisa menetapkan beberapa pemilik pada satu file atau memberikan izin berbeda kepada kelompok pengguna tertentu.
@@ -297,7 +297,7 @@ ACL POSIX → ACL tradisional di Unix/Linux.
 ACL NFSv4 → Versi lebih modern dan fleksibel.
 
 
-#### Implementasi ACL 
+### Implementasi ACL 
 
 ACL dapat diterapkan oleh berbagai komponen sistem, seperti:
 Kernel → Mengelola ACL untuk semua sistem berkas.
