@@ -37,8 +37,8 @@ PXE berfungsi sebagai OS kecil yang tertanam dalam ROM kartu jaringan. Teknologi
 
 ### Sistem Manajemen Paket Linux
 Menggunakan dua format utama:
-- RPM, digunakan oleh Red Hat, CentOS, SUSE, dan Amazon Linux.  
-- .deb, digunakan oleh Debian dan Ubuntu. 
+- **RPM**, digunakan oleh Red Hat, CentOS, SUSE, dan Amazon Linux.  
+- **.deb**, digunakan oleh Debian dan Ubuntu. 
 
 Keduanya memiliki fungsi serupa dalam mengelola perangkat lunak di sistem operasi.
 
