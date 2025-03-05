@@ -31,68 +31,70 @@ Beberapa sistem berkas berbasis disk yang umum digunakan adalah ext4, XFS, UFS, 
 Dalam konteks teknis, istilah yang tepat adalah direktori, bukan folder. Nama path (pathname) menunjukkan lokasi suatu file dalam sistem berkas dan dapat berupa:
 Path absolut → menunjukkan lokasi lengkap (misalnya /home/username/file.txt)
 Path relatif → menunjukkan lokasi berdasarkan posisi saat ini (misalnya ./file.txt)
+
 ### Filesystem Mounting and Unmounting 
 Sistem berkas terdiri dari bagian-bagian kecil yang disebut sistem berkas, yang memiliki direktori, subdirektori, dan berkas. Pohon berkas menggambarkan tata letak keseluruhan, sedangkan sistem berkas adalah cabang yang dilekatkan ke pohon tersebut menggunakan perintah mount. Perintah mount memetakan direktori di dalam pohon berkas yang ada, yang disebut titik mount, ke root dari sistem berkas yang baru.
 Contoh:
-# Mount sistem berkas pada /dev/sda4 ke /users
-mount /dev/sda4 /users
+
+    Mount the filesystem on /dev/sda4 to /users
+    mount /dev/sda4 /users
 
 
 Perintah umount
-umount -l → Unmount secara malas (lazy), menghapus dari hirarki tetapi tetap aktif jika masih digunakan.
-umount -f → Unmount paksa jika sistem berkas sedang sibuk.
-Gunakan lsof untuk melihat daftar proses yang mengakses sistem berkas:
-# Mengetahui Proses yang Menggunakan Sistem Berkas
-lsof /home/abdou
+- umount -l → Unmount secara malas (lazy), menghapus dari hirarki tetapi tetap aktif jika masih digunakan.
+- umount -f → Unmount paksa jika sistem berkas sedang sibuk.
 
-COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
-bash     1000 abdou  cwd  DIR   8,1     4096  131073 /home/abdou
-code     1234 abdou  cwd  DIR   8,1     4096  131073 /home/abdou
-msedge   5678 abdou  cwd  DIR   8,1     4096  131073 /home/abdou
+Gunakan **lsof** untuk melihat daftar proses yang mengakses sistem berkas:
+
+Mengetahui Proses yang Menggunakan Sistem Berkas
+
+# Find out which processes are using the filesystem
+
+    abdou@debian:~$ lsof /home/abdou
+
+    COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
+    bash     1000 abdou  cwd    DIR    8,1     4096  131073 /home/abdou
+    bash     1000 abdou  rtd    DIR    8,1     4096  131073 /home/abdou
+    bash     1000 abdou  txt    REG    8,1   103752  131072 /bin/bash
+    bash     1000 abdou  mem    REG    8,1  1848400  131074 /lib/x86_64-linux-gnu/libc-2.28.so
+    bash     1000 abdou  mem    REG    8,1   170864  131075 /lib/x86_64-linux-gnu/ld-2.28.so
+    code     1234 abdou  cwd    DIR    8,1     4096  131073 /home/abdou
+    msedge   5678 abdou  cwd    DIR    8,1     4096  131073 /home/abdou
 
 Untuk menyelidiki proses tertentu, gunakan perintah ps:
 Contoh:
 
-ps up "1234 5678 91011"
+    Investigate the processes that are using the filesystem
 
-USER    PID  %CPU %MEM   VSZ   RSS TTY   STAT START   TIME COMMAND
-abdou  1234  0.0  0.0 12345  1234 ?     Ssl  00:00   0:00 code
-abdou  5678  0.0  0.0 12345  1234 ?     Ssl  00:00   0:00 msedge
-abdou 91011  0.0  0.0 12345  1234 ?     Ssl  00:00   0:00 chrome
+    abdou@debian:~$ ps up "1234 5678 91011"
 
+    USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+    abdou     1234  0.0  0.0  12345  1234 ?        Ssl  00:00   0:00 code
+    abdou     5678  0.0  0.0  12345  1234 ?        Ssl  00:00   0:00 msedge
+    abdou     91011  0.0  0.0  12345  1234 ?        Ssl  00:00   0:00 chrome
 
 
 ###  Pengorganisasian pohon berkas
 Sistem UNIX memiliki struktur yang kurang terorganisir dengan baik karena berbagai konvensi penamaan yang tidak kompatibel dan penyebaran berkas yang tidak teratur.
 Struktur Root Filesystem
-**Root filesystem** → Berisi direktori root (/) dan berkas minimal yang dibutuhkan. Kernel OS biasanya ada di /boot, tetapi lokasinya bisa berbeda.
-**/etc*** → Menyimpan berkas sistem dan konfigurasi penting.
-**/sbin & /bin** → Berisi utilitas sistem penting.
-**/tmp** → Menyimpan berkas sementara.
-**/dev** → Dahulu bagian dari root filesystem, sekarang menjadi sistem berkas virtual yang dimuat terpisah.
-**/lib & /lib64** → Menyimpan pustaka sistem dan preprosesor C, terkadang dipindahkan ke /usr/lib dengan /lib sebagai symbolic link.
-Direktori Penting Lainnya
-/usr → Menyimpan program standar yang tidak bersifat kritis, manual online, dan pustaka sistem. FreeBSD menyimpan konfigurasi lokal di /usr/local.
-/var → Berisi spool, log sistem, dan informasi yang sering berubah.
-Baik **/usr** maupun** /var** harus tersedia agar sistem bisa masuk ke mode multiuser.
+- **Root filesystem** → Berisi direktori root (/) dan berkas minimal yang dibutuhkan. Kernel OS biasanya ada di /boot, tetapi lokasinya bisa berbeda.
+- **/etc*** → Menyimpan berkas sistem dan konfigurasi penting.
+- **/sbin & /bin** → Berisi utilitas sistem penting.
+- **/tmp** → Menyimpan berkas sementara.
+- **/dev** → Dahulu bagian dari root filesystem, sekarang menjadi sistem berkas virtual yang dimuat terpisah.
+- **/lib & /lib64** → Menyimpan pustaka sistem dan preprosesor C, terkadang dipindahkan ke /usr/lib dengan /lib sebagai symbolic link.
 
-### Jenis-jenis file
-Sebagian besar implementasi sistem berkas mendefinisikan tujuh jenis berkas:
-1.     File biasa
-2.     Direktori
-3.     File perangkat karakter
-4.     File perangkat blokir
-5.     Soket domain lokal
-6.     Pipa bernama (FIFO)
-7.     Tautan simbolik
-Anda jjuga dapat menentukan jenis file dengan menggunakan perintah file (ketik man file untuk informasi lebih lanjut).
-$ file /bin/bash
-bin/bash: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=33a5554034feb2af38e8c75872058883b2988bc5, for GNU/Linux 3.2.0, stripped
-Anda juga dapat menggunakan ls -ld, flag -d memaksa ls untuk menampilkan informasi untuk sebuah direktori dan bukan menampilkan isi direktori tersebut.
+Direktori Penting Lainnya
+- **/usr** → Menyimpan program standar yang tidak bersifat kritis, manual online, dan pustaka sistem. FreeBSD menyimpan konfigurasi lokal di /usr/local.
+
+- **/var** → Berisi spool, log sistem, dan informasi yang sering berubah.
+
+Baik **/usr** maupun **/var** harus tersedia agar sistem bisa masuk ke mode multiuser.
 
 <img src="images/5.1.png">
 
-### Jenis-jenis File
+### Jenis-jenis file
+Sebagian besar implementasi sistem berkas mendefinisikan tujuh jenis berkas:
 
 1. File biasa
 2. Direktori
@@ -102,14 +104,12 @@ Anda juga dapat menggunakan ls -ld, flag -d memaksa ls untuk menampilkan informa
 6. Pipa bernama (FIFO)
 7. Tautan simbolik
 
-Anda dapat menentukan jenis file dengan menggunakan perintah file (ketik man file untuk informasi lebih lanjut).
+Anda juga dapat menentukan jenis file dengan menggunakan perintah file (ketik man file untuk informasi lebih lanjut).
 
     $ file /bin/bash
     bin/bash: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=33a5554034feb2af38e8c75872058883b2988bc5, for GNU/Linux 3.2.0, stripped
 
-
-Anda juga dapat menggunakan ls -ld, flag -d memaksa ls untuk menampilkan informasi untuk sebuah direktori dan bukan menampilkan isi direktori tersebut.
-
+Anda juga dapat menggunakan **ls -ld**, flag **-d** memaksa ls untuk menampilkan informasi untuk sebuah direktori dan bukan menampilkan isi direktori tersebut.
 
  <img src="images/5.2.png">
 
@@ -117,37 +117,47 @@ Anda juga dapat menggunakan ls -ld, flag -d memaksa ls untuk menampilkan informa
 - Direktori → Berfungsi sebagai referensi ke file lain.
 Tautan keras (Hard Link) → Memungkinkan satu file memiliki beberapa nama. Dibuat dengan perintah ln.
 Perintah ls -i → Menampilkan jumlah hard link pada setiap file
+
 Contoh
+
     $ ln /etc/passwd /tmp/passwd
 
-### Berkarakter dan memblokir file perangkat\
-File perangkat memungkinkan program berkomunikasi dengan perangkat keras melalui driver kernel.
-Nomor perangkat mayor dan minor → Mayor menentukan driver, minor menunjukkan unit perangkat fisik.
+#### Karakter dan memblokir file perangkat
+
+- File perangkat memungkinkan program berkomunikasi dengan perangkat keras melalui driver kernel.
+- Nomor perangkat mayor dan minor → Mayor menentukan driver, minor menunjukkan unit perangkat fisik.
 Contoh: /dev/tty0 (port serial pertama) memiliki mayor 4, minor 0.
-Direktori /dev kini dikelola otomatis oleh kernel, bukan dibuat manual dengan mknod.
+- Direktori /dev kini dikelola otomatis oleh kernel, bukan dibuat manual dengan mknod.
+
 Komunikasi Antarproses
-Soket domain lokal → Mirip dengan soket jaringan, tapi terbatas pada satu host.
+- Soket domain lokal → Mirip dengan soket jaringan, tapi terbatas pada satu host.
 Contoh: Syslog dan X Window System menggunakannya.
-Pipa bernama → Memungkinkan komunikasi antarproses dalam satu host.
+- Pipa bernama → Memungkinkan komunikasi antarproses dalam satu host.
+
 Tautan dalam Sistem Berkas
-Tautan simbolik (Soft Link) → Mengacu pada file berdasarkan nama, lebih fleksibel dari hard link.
+- Tautan simbolik (Soft Link) → Mengacu pada file berdasarkan nama, lebih fleksibel dari hard link.
 Bisa mengarah ke file di sistem berkas lain dan bisa menunjuk ke direktori.
 Contoh: 
 
-    ln -s /bin /usr/bin
+        ln -s /bin /usr/bin
 
-    ls -l /usr/bin
-    lrwxrwxrwx 1 root root 4 Mar  1  2020 /usr/bin -> /bin
+        ls -l /usr/bin
+        lrwxrwxrwx 1 root root 4 Mar  1  2020 /usr/bin -> /bin
 
 ### Atribut file
+
 Setiap file memiliki 9 bit hak akses yang menentukan izin membaca (r), menulis (w), dan mengeksekusi (x) untuk pemilik, grup, dan lainnya.
+
 Ditambah 3 bit khusus, yang memengaruhi eksekusi program, membentuk 12 bit mode file.
+
 4 bit tipe file ditetapkan saat file dibuat dan tidak dapat diubah.
+
 Perintah chmod digunakan oleh pemilik file atau superuser untuk mengubah mode file.
 
  <img src="images/5.3.jpg">
 
 ### Bit izin
+
 Bit Izin dibagi dalam 3 kelompok:
 
 - u (user/pemilik)
@@ -189,60 +199,78 @@ Mempermudah berbagi file dalam kelompok pengguna.
 Bit dengan nilai oktal 1000 adalah sticky bit. Ketika diatur pada sebuah direktori, sticky bit mencegah pengguna menghapus atau mengganti nama file yang bukan miliknya. Ini berguna untuk direktori seperti /tmp yang digunakan bersama oleh banyak pengguna.
 
 #### ls: membuat daftar dan memeriksa file
-Rangkuman Perintah Terkait File dan Hak Akses di UNIX/Linux
-ls – Menampilkan daftar file dan direktori.
 
-ls -l: Menampilkan informasi detail termasuk mode file, jumlah hard link, pemilik, grup, ukuran, dan waktu modifikasi.
+- ls – Menampilkan daftar file dan direktori.
+
+    ls -l: Menampilkan informasi detail termasuk mode file, jumlah hard link, pemilik, grup, ukuran, dan waktu modifikasi.
+
 Contoh untuk file perangkat:
- $ ls -l /dev/tty0
-crw--w---- 1 root tty 4, 0 Mar  1  2020 /dev/tty0
+
+    $ ls -l /dev/tty0
+    crw--w---- 1 root tty 4, 0 Mar  1  2020 /dev/tty0
 
 
 c: Menunjukkan file perangkat karakter.
 4, 0: Nomor perangkat mayor dan minor.
-chmod – Mengubah hak akses file.
+
+- chmod – Mengubah hak akses file.
 
  <img src="images/5.4.png">
 
+Contoh-contoh dari sintaks mnemonic chmod:
+
+| Specifier | Meaning |
+| --- | --- |
+| `u+w` | Add write permission for the file's owner |
+| `ug=rw,o=r` | Gives r/w permission to owner and group, and r permission to others |
+| `a-x` | Remove execute permission for all users |
+| `ug=srx, o=` | Set the setuid, setgid, and sticky bits for owner and group (r/x) |
+| `g=u` | Make the group's permissions the same as the owner's |
 Notasi simbolik:
- chmod u+w file.txt  # Menambahkan izin tulis untuk pemilik  
-chmod ug=rw,o=r file.txt  # Pemilik & grup mendapat r/w, orang lain hanya r  
-chmod a-x file.txt  # Menghapus izin eksekusi untuk semua pengguna  
-chmod g=u file.txt  # Menyamakan izin grup dengan pemilik  
-chmod ug=srx,o= file.txt  # Mengatur setuid & setgid untuk pemilik dan grup  
-chmod --reference=source.txt target.txt  # Menyalin izin dari file lain  
 
 
-chown – Mengubah pemilik dan grup file.
+
+**chown – Mengubah pemilik dan grup file.**
 
 
 chown -R pengguna:grup direktori → Mengubah kepemilikan secara rekursif.
- chown -R abdou:users /home/abdou  
+
+    chown -R abdou:users /home/abdou  
 
 
-chgrp – Mengubah grup file.
+**chgrp – Mengubah grup file.**
 
 
 chgrp -R grup direktori → Mengubah grup secara rekursif.
+
  chgrp -R users /home/abdou  
 
 
-umask – Menentukan izin default file/direktori baru.
+**umask – Menentukan izin default file/direktori baru.**
 
 
 Nilai umask dikurangkan dari izin default untuk menentukan izin aktual.
- umask 022  # rwx untuk pemilik, rx untuk grup, r untuk orang lain  
-umask 027  # rwx untuk pemilik, rx untuk grup, tidak ada izin untuk orang lain  
 
-Tabel referensi umask:
- Octal  Binary  Perms    | Octal  Binary  Perms
-0      000     rwx      | 4      100     -wx
-1      001     rw-      | 5      101     -w-
-2      010     r-x      | 6      110     --x
-3      011     r--      | 7      111     ---
+Contoh:
+
+   ```bash
+    $ umask 022
+```
+
+ | Octal | Binary | Perms |
+| --- | --- | --- |
+| 0 | 000 | --- |
+| 1 | 001 | --x |
+| 2 | 010 | -w- |
+| 3 | 011 | -wx |
+| 4 | 100 | r-- |
+| 5 | 101 | r-x |
+| 6 | 110 | rw- |
+| 7 | 111 | rwx |   
+
+Sebagai contoh, umask 027 mengizinkan rwx untuk pemilik, rx untuk grup, dan tidak ada izin untuk orang lain.
 
 
-Rangkuman ini mencakup semua informasi penting tanpa menghilangkan contoh yang diberikan.
 ### Daftar Kontrol Akses
 
 
@@ -261,7 +289,8 @@ Menampilkan ACL sebuah file:
  	getfacl /etc/passwd
 
 Menetapkan izin ACL pada file:
-setfacl -m u:abdou:rw /etc/passwd  
+
+    setfacl -m u:abdou:rw /etc/passwd  
 
 Jenis ACL:
 ACL POSIX → ACL tradisional di Unix/Linux.
@@ -269,14 +298,17 @@ ACL NFSv4 → Versi lebih modern dan fleksibel.
 
 
 #### Implementasi ACL 
+
 ACL dapat diterapkan oleh berbagai komponen sistem, seperti:
 Kernel → Mengelola ACL untuk semua sistem berkas.
 Sistem Berkas → Setiap sistem berkas menangani ACL secara independen.
 Perangkat Lunak Tingkat Lebih Tinggi → Misalnya, server NFS dan SMB yang menangani ACL secara khusus.
 
 ### POSIX ACLs
+
 POSIX ACLs adalah ACL tradisional dalam sistem Unix. ACL ini didukung oleh sebagian besar sistem operasi mirip Unix, termasuk Linux, FreeBSD, dan Solaris.
 Entri yang dapat muncul dalam POSIX ACLs:
+
 | Format | Example | Sets permissions for |
 | --- | --- | --- |
 | `user::perms` | `user:rw-` | The file's owner |
@@ -289,6 +321,7 @@ Entri yang dapat muncul dalam POSIX ACLs:
 contoh:
 
 ```bash
+
 $ setfacl -m user:abdou:rwx,group:users:rwx,other::r /home/abdou
 
 $ getfacl --omit-header /home/abdou
