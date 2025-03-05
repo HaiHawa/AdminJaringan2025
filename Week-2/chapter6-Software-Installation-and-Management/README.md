@@ -77,3 +77,11 @@ yum adalah alat manajemen paket berbasis RPM yang menangani instalasi, pembaruan
 ### Pelokalan dan Konfigurasi Perangkat Lunak
 Menyesuaikan sistem dengan lingkungan lokal atau cloud adalah tantangan utama dalam administrasi sistem. Agar tidak menimbulkan masalah di kemudian hari, proses ini harus dilakukan dengan cara yang terstruktur, terdokumentasi, dan bisa diulang. Pendekatan ini mencegah sistem menjadi terlalu unik (snowflake system), yang dapat menyulitkan pemulihan saat terjadi kegagalan. Dengan strategi yang tepat, sistem akan lebih stabil, mudah dikelola, dan cepat dipulihkan jika terjadi masalah.
 
+### Kesimpulan:  
+
+- Instalasi dan manajemen perangkat lunak dalam sistem Linux memerlukan pendekatan yang efisien dan terstruktur. 
+- Instalasi OS dapat dilakukan melalui media lokal atau jaringan, dengan metode seperti PXE untuk otomatisasi
+- Pengelolaan perangkat lunak menggunakan sistem manajemen paket berbasis RPM atau .deb, dengan alat seperti yum dan APT untuk menangani instalasi, pembaruan, serta ketergantungan paket. 
+- Repositori paket menjadi sumber utama perangkat lunak, yang dikategorikan berdasarkan rilis, komponen, dan arsitektur. 
+- Pelokalan dan konfigurasi sistem harus dilakukan secara sistematis untuk mencegah sistem yang sulit dikelola dan dipulihkan.
+
