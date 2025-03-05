@@ -33,7 +33,7 @@ Instalasi juga bisa dilakukan otomatis menggunakan PXE (Preboot eXecution Enviro
 
 PXE bekerja seperti OS kecil yang tersimpan di ROM kartu jaringan. Teknologi ini menyediakan akses jaringan melalui API standar yang bisa digunakan BIOS. Dengan PXE, komputer yang mendukung fitur ini bisa booting langsung dari jaringan tanpa perlu driver tambahan untuk kartu jaringan.
 
-
+ <img src="images/1.1.png">
 
 ### Sistem Manajemen Paket Linux
 Menggunakan dua format utama:
