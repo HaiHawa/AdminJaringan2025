@@ -24,7 +24,6 @@
 - [Jenis-jenis file](#jenis-jenis-file)
 - [Atribut file](#atribut-file)
 - [Daftar Kontrol Akses](#daftar-Kontrol-akses)
-- [Kill: mengirim sinyal](#kill-mengirim-sinyal)
 - [Kesimpulan](#kesimpulan)
 
  <img src="images/5.0.png">
