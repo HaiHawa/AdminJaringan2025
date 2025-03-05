@@ -63,6 +63,7 @@ Sinyal dapat dikirim oleh administrator (dengan perintah kill) untuk berbagai tu
 Sinyal dapat dikirim oleh kernel ketika suatu proses melakukan pelanggaran, seperti pembagian dengan nol.
 Sinyal dapat dikirim oleh kernel untuk memberi tahu proses tentang kondisi tertentu, seperti matinya proses anak atau tersedianya data pada saluran I/O.
 
+ <img src="images/1.png">
 
 Sinyal **KILL**, **INT**, **TERM**, **HUP**, dan **QUIT** tampak memiliki fungsi serupa, tetapi sebenarnya memiliki kegunaan yang berbeda.
 **KILL** adalah sinyal yang tidak bisa diblokir dan langsung menghentikan proses di tingkat kernel. Proses tidak dapat menangkap atau menangani sinyal ini.
@@ -101,17 +102,21 @@ u: Menampilkan detail lengkap tentang setiap proses.
 x: Menampilkan proses yang tidak terkait dengan terminal tertentu.
 Satu set argumen lain yang berguna adalah lax, yang memberikan lebih banyak informasi teknis tentang proses. lax sedikit lebih cepat daripada aux karena tidak perlu menyelesaikan nama pengguna dan grup
 
+ <img src="images/2.jpg">
+  <img src="images/3.png">
+   <img src="images/4.jpg">
+
 Untuk mencari proses tertentu, Anda bisa menggunakan grep untuk memfilter output ps.
 
-$ ps aux | grep -v grep | grep firefox
+    $ ps aux | grep -v grep | grep firefox
 
 Kita dapat menentukan PID dari sebuah proses dengan menggunakan pgrep.
 
-$ pgrep firefox
+    $ pgrep firefox
 
 atau pidof.
 
-$ pidof /usr/bin/firefox
+    $ pidof /usr/bin/firefox
 
 ### Pemantauan interaktif dengan top
 
@@ -141,24 +146,27 @@ Nilai nice default adalah 0, dan semakin rendah nilai nice, semakin tinggi prior
 ### Sistem berkas /proc
 Di Linux, perintah ps dan top membaca status proses dari /proc, sebuah sistem berkas semu yang menyimpan informasi sistem dan proses.
 Setiap proses memiliki direktori di /proc dengan nama sesuai PID-nya, berisi berbagai berkas yang menyimpan informasi seperti baris perintah, variabel lingkungan, dan deskriptor berkas. Selain proses, /proc juga menyimpan statistik sistem.
+
+ <img src="images/5.png">
+
 ### Strace dan truss
 Perintah strace (di Linux) dan truss (di FreeBSD) digunakan untuk melacak panggilan sistem dan sinyal dari sebuah proses. Perintah ini berguna untuk debugging atau memahami aktivitas program.
 Sebagai contoh, log berikut ini dihasilkan oleh strace yang dijalankan pada sebuah salinan aktif dari top (yang berjalan sebagai PID 5810):
 
-$ strace -p 5810
+    $ strace -p 5810
 
-gettimeofday({1197646605,  123456}, {300, 0}) = 0
-open("/proc", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY) = 7
-fstat64(7, {st_mode=S_IFDIR|0555, st_size=0, ...}) = 0
-fcntl64(7, F_SETFD, FD_CLOEXEC)          = 0
-getdents64(7, /* 3 entries */, 32768)   = 72
-getdents64(7, /* 0 entries */, 32768)   = 0
-stat64("/proc/1", {st_mode=S_IFDIR|0555, st_size=0, ...}) = 0
-open("/proc/1/stat", O_RDONLY)           = 8
-read(8, "1 (init) S 0 1 1 0 -1 4202752"..., 1023) = 168
-close(8)                                = 0
+    gettimeofday({1197646605,  123456}, {300, 0}) = 0
+    open("/proc", O_RDONLY|O_NONBLOCK|O_LARGEFILE|O_DIRECTORY) = 7
+    fstat64(7, {st_mode=S_IFDIR|0555, st_size=0, ...}) = 0
+    fcntl64(7, F_SETFD, FD_CLOEXEC)          = 0
+    getdents64(7, /* 3 entries */, 32768)   = 72
+    getdents64(7, /* 0 entries */, 32768)   = 0
+    stat64("/proc/1", {st_mode=S_IFDIR|0555, st_size=0, ...}) = 0
+    open("/proc/1/stat", O_RDONLY)           = 8
+    read(8, "1 (init) S 0 1 1 0 -1 4202752"..., 1023) = 168
+    close(8)                                = 0
 
-[...]
+    [...]
 
 top dimulai dengan memeriksa waktu saat ini. Kemudian membuka dan membuat statistik direktori /proc, dan membaca file /proc/1/stat untuk mendapatkan informasi tentang proses init.
 
@@ -166,9 +174,10 @@ top dimulai dengan memeriksa waktu saat ini. Kemudian membuka dan membuat statis
 ### Proses yang berhenti
 
 Proses yang tidak merespons dan menggunakan 100% CPU disebut runaway process, yang dapat memperlambat sistem. Untuk menghentikannya, gunakan:
-kill -9 pid
-# atau
-kill -KILL pid
+
+    kill -9 pid
+    atau
+    kill -KILL pid
 
 Untuk menyelidiki penyebabnya, gunakan strace atau truss. Jika proses ini menghasilkan banyak output dan memenuhi sistem berkas, periksa dengan:
 **df -h** → Mengecek penggunaan sistem berkas
@@ -194,14 +203,14 @@ Sebuah berkas crontab memiliki lima field untuk menentukan hari, tanggal dan wak
 
 Beberapa contoh:
 
-# Run a command at 2:30am every day
-30 2 * * * command
+    # Run a command at 2:30am every day
+    30 2 * * * command
 
-# Run a command at 10:30pm on the 1st of every month
-30 22 1 * * command
+    # Run a command at 10:30pm on the 1st of every month
+    30 22 1 * * command
 
-# Run a Python script every 1st of the month at 2:30am
-30 2 1 * * /usr/bin/python3 /path/to/script.py
+    # Run a Python script every 1st of the month at 2:30am
+    30 2 1 * * /usr/bin/python3 /path/to/script.py
 
 Berikut jadwalnya: 0,30 * 13 * 5 berarti bahwa perintah akan dijalankan pada 0 dan 30 menit setelah jam ke-13 pada hari Jumat. Jika Anda ingin menjalankan perintah setiap 30 menit, Anda dapat menggunakan jadwal berikut: */30 * * * *
 
@@ -215,29 +224,31 @@ crontab -r → Menghapus crontab
 Timer systemd adalah unit konfigurasi .timer yang berfungsi sebagai alternatif cron dengan fleksibilitas lebih tinggi. Timer ini mengaktifkan unit layanan pada waktu yang ditentukan atau berdasarkan suatu peristiwa.
 Perintah systemctl digunakan untuk mengelola unit systemd, dengan opsi:
 list-timers → Menampilkan daftar timer yang aktif.
-$ systemctl list-timers
 
-NEXT                         LEFT          LAST                         PASSED       UNIT                         ACTIVATES
-Fri 2021-10-15 00:00:00 UTC  1h 1min left Thu 2021-10-14 00:00:00 UTC  22h ago      logrotate.timer              logrotate.service
+    $ systemctl list-timers
 
-1 timers listed.
+    NEXT                         LEFT          LAST                         PASSED       UNIT                         ACTIVATES
+    Fri 2021-10-15 00:00:00 UTC  1h 1min left Thu 2021-10-14 00:00:00 UTC  22h ago      logrotate.timer              logrotate.service
+
+    1 timers listed.
+
 Pada contoh di atas, unit logrotate.timer dijadwalkan untuk mengaktifkan unit logrotate.service pada tengah malam setiap hari.
 
 Berikut ini adalah tampilan unit logrotate.timer:
 
-	$ cat /usr/lib/systemd/system/logrotate.timer
+    $ cat /usr/lib/systemd/system/logrotate.timer
 
-[Unit]
-Description=Daily rotation of log files
-Documentation=man:logrotate(8) man:logrotate.conf(5)
+    [Unit]
+    Description=Daily rotation of log files
+    Documentation=man:logrotate(8) man:logrotate.conf(5)
 
-[Timer]
-OnCalendar=daily
-AccuracySec=1h
-Persistent=true
+    [Timer]
+    OnCalendar=daily
+    AccuracySec=1h
+    Persistent=true
 
-[Install]
-WantedBy=timers.target
+    [Install]
+    WantedBy=timers.target
 
 Opsi OnCalendar digunakan untuk menentukan kapan timer harus mengaktifkan layanan. Opsi AccuracySec digunakan untuk menentukan akurasi pengatur waktu. Opsi Persistent digunakan untuk menentukan apakah timer harus mengejar waktu yang terlewat.
 
@@ -249,14 +260,14 @@ Anda dapat secara otomatis mengirim email output laporan harian atau hasil eksek
 
 Sebagai contoh:
 
-30 4 25 * * /usr/bin/mail -s "Monthly report"
-    abdou@admin.com%Receive the monthly report for the month of July!%%Sincerely,%cron%
+    30 4 25 * * /usr/bin/mail -s "Monthly report"
+        abdou@admin.com%Receive the monthly report for the month of July!%%Sincerely,%cron%
 
 ####  Membersihkan sistem berkas
 
 Anda dapat menggunakan pengatur waktu cron atau systemd untuk menjalankan skrip yang membersihkan sistem berkas. Sebagai contoh, Anda dapat menggunakan skrip untuk membersihkan isi direktori sampah setiap hari pada tengah malam.
 
-0 0 * * * /usr/bin/find /home/abdou/.local/share/Trash/files -mtime +30 -exec /bin/rm -f {} \;
+    0 0 * * * /usr/bin/find /home/abdou/.local/share/Trash/files -mtime +30 -exec /bin/rm -f {} \;
 
 #### Memutar file log
 Rotasi log adalah proses membagi file log berdasarkan ukuran atau tanggal agar versi lama tetap tersedia. Karena sifatnya yang berulang, rotasi log cocok untuk dijadwalkan secara otomatis.
