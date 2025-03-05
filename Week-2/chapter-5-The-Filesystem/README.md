@@ -18,6 +18,15 @@
 
 # Bab 5: Sistem Berkas
 
+- [Pathnames](#pathnames)
+- [Filesystem Mounting and Unmounting](#filesystem-mounting-and-unmounting)
+- [Pengorganisasian pohon berkas](#pengorganisasian-pohon-berkas)
+- [Jenis-jenis file](#jenis-jenis-file)
+- [Atribut file](#atribut-file)
+- [Daftar Kontrol Akses](#daftar-Kontrol-akses)
+- [Kill: mengirim sinyal](#kill-mengirim-sinyal)
+- [Kesimpulan](#kesimpulan)
+
  <img src="images/5.0.png">
 
 Sistem berkas berfungsi untuk merepresentasikan dan mengatur penyimpanan dalam sistem. Komponen utama sistem berkas meliputi:
@@ -339,7 +348,12 @@ other::r--
 NFSv4 ACL adalah versi ACL yang lebih canggih dibandingkan POSIX ACL. Didukung oleh Linux dan FreeBSD, NFSv4 ACL memiliki fitur tambahan, seperti ACL default yang secara otomatis menetapkan izin untuk file dan direktori baru.
 
 
+# Kesimpulan
+- Sistem file di Unix dan Linux mendukung berbagai jenis berkas, termasuk berkas biasa, direktori, perangkat karakter dan blok, serta tautan simbolik. Setiap berkas memiliki hak akses yang menentukan siapa yang dapat membaca, menulis, atau mengeksekusinya.  
 
+- Model izin tradisional Unix menggunakan bit izin untuk pemilik, grup, dan pengguna lain. Namun, untuk kontrol yang lebih fleksibel, Access Control Lists (ACL) memungkinkan pengaturan izin yang lebih kompleks, seperti menetapkan beberapa pemilik atau memberikan izin berbeda kepada berbagai grup pengguna.  
+
+- Dua jenis utama ACL adalah POSIX ACL, yang merupakan standar Unix lama, dan NFSv4 ACL, yang lebih mutakhir dengan fitur tambahan seperti ACL default. Pengelolaan izin ini dapat dilakukan menggunakan perintah seperti chmod, chown, chgrp, getfacl, dan setfacl.
 
 
 
