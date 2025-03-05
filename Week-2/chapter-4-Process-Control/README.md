@@ -21,15 +21,16 @@
 ### Komponen-komponen Proses
 Sebuah proses terdiri dari sebuah ruang alamat dan sekumpulan struktur data di dalam kernel. Ruang alamat adalah sekumpulan halaman memori yang telah ditandai oleh kernel untuk digunakan oleh proses, biasanya berukuran 4KiB atau 8KiB untuk menyimpan kode, data, dan tumpukan. Kernel menggunakan struktur data untuk melacak status proses, prioritas, parameter penjadwalan proses dan sebagainya.
 Proses adalah wadah yang berisi sumber daya seperti memori, deskriptor file, dan atribut yang menggambarkan keadaan proses, dikelola oleh kernel untuk program yang berjalan.
+
 Struktur data internal kernel mencatat berbagai informasi tentang setiap proses:
 
-Peta ruang alamat proses
- Status proses saat ini (sedang berjalan, tidur, dan seterusnya)
-Prioritas proses
-Informasi tentang sumber daya yang digunakan proses (CPU, memori, dan sebagainya)
-Informasi tentang file dan port jaringan yang telah dibuka oleh proses
-Topeng sinyal proses (sekumpulan sinyal yang saat ini diblokir)
-Pemilik proses (ID pengguna dari pengguna yang memulai proses)
+- Peta ruang alamat proses
+- Status proses saat ini (sedang berjalan, tidur, dan seterusnya)
+- Prioritas proses
+- Informasi tentang sumber daya yang digunakan proses (CPU, memori, dan sebagainya)
+- Informasi tentang file dan port jaringan yang telah dibuka oleh proses
+- Topeng sinyal proses (sekumpulan sinyal yang saat ini diblokir)
+- Pemilik proses (ID pengguna dari pengguna yang memulai proses)
 
 Thread adalah unit eksekusi dalam proses yang berbagi ruang alamat dan sumber daya. Thread digunakan untuk mencapai paralelisme dalam sebuah proses. Thread lebih ringan dan lebih efisien dibandingkan proses.
 
@@ -51,8 +52,8 @@ Setiap proses juga dikaitkan dengan proses induk, yaitu proses yang membuatnya. 
 UID (User ID) adalah identitas pengguna yang menjalankan suatu proses, sedangkan EUID (Effective User ID) menentukan hak akses proses terhadap sumber daya. EUID berfungsi untuk mengatur izin akses ke file, port jaringan, dan sumber daya lainnya.
 
 ### Daur hidup sebuah proses
-Untuk membuat proses baru, sebuah proses dapat menduplikasi dirinya menggunakan sistem call *fork*. Perintah ini menghasilkan salinan dari proses induk yang hampir sepenuhnya identik, tetapi dengan *PID* yang berbeda serta informasi akuntansi tersendiri. Di Linux, *clone* digunakan sebagai versi lebih luas dari fork, menangani thread dan fitur tambahan. Meskipun fork masih tersedia untuk kompatibilitas, secara internal sistem akan memanggil *clone*.
-Saat sistem melakukan booting, kernel secara otomatis membuat dan menginisialisasi beberapa proses. Salah satu yang paling penting adalah *init* atau *systemd*,yang selalu menjadi proses nomor 1. Proses ini menjalankan skrip startup sistem, meskipun metode eksekusinya dapat berbeda antara UNIX dan Linux. Semua proses di luar yang dibuat langsung oleh kernel berasal dari proses awal ini.
+Untuk membuat proses baru, sebuah proses dapat menduplikasi dirinya menggunakan sistem call **fork**. Perintah ini menghasilkan salinan dari proses induk yang hampir sepenuhnya identik, tetapi dengan *PID* yang berbeda serta informasi akuntansi tersendiri. Di Linux, **clone** digunakan sebagai versi lebih luas dari fork, menangani thread dan fitur tambahan. Meskipun fork masih tersedia untuk kompatibilitas, secara internal sistem akan memanggil **clone**.
+Saat sistem melakukan booting, kernel secara otomatis membuat dan menginisialisasi beberapa proses. Salah satu yang paling penting adalah **init** atau **systemd** ,yang selalu menjadi proses nomor 1. Proses ini menjalankan skrip startup sistem, meskipun metode eksekusinya dapat berbeda antara UNIX dan Linux. Semua proses di luar yang dibuat langsung oleh kernel berasal dari proses awal ini.
 
 #### Sinyal
 Sinyal adalah mekanisme untuk memberikan notifikasi kepada suatu proses tentang kejadian tertentu. Sinyal digunakan untuk memberi tahu proses ketika suatu peristiwa terjadi.
@@ -66,44 +67,57 @@ Sinyal dapat dikirim oleh kernel untuk memberi tahu proses tentang kondisi terte
  <img src="images/1.png">
 
 Sinyal **KILL**, **INT**, **TERM**, **HUP**, dan **QUIT** tampak memiliki fungsi serupa, tetapi sebenarnya memiliki kegunaan yang berbeda.
-**KILL** adalah sinyal yang tidak bisa diblokir dan langsung menghentikan proses di tingkat kernel. Proses tidak dapat menangkap atau menangani sinyal ini.
-**INT** dikirim oleh driver terminal saat pengguna menekan kombinasi tombol tertentu. Sinyal ini meminta proses untuk menghentikan operasi yang sedang berjalan. Program sederhana biasanya keluar saat menerima sinyal ini, sedangkan program dengan antarmuka interaktif (seperti shell) sebaiknya menghentikan tugasnya, membersihkan status, lalu menunggu input pengguna kembali.
-**TERM** adalah permintaan untuk mengakhiri eksekusi secara keseluruhan. Proses yang menerima sinyal ini sebaiknya membersihkan statusnya sebelum keluar.
-**HUP** dikirim ke suatu proses ketika terminal yang mengontrolnya ditutup. Awalnya digunakan untuk menandakan terputusnya koneksi telepon, tetapi sekarang sering digunakan untuk meminta proses daemon berhenti dan memulai ulang guna menerapkan konfigurasi baru. Cara proses merespons sinyal ini tergantung pada jenis prosesnya.
-**QUIT** memiliki fungsi serupa dengan TERM, tetapi jika tidak ditangani, secara default akan menghasilkan core dump. Beberapa program menggunakan sinyal ini untuk tujuan lain sesuai kebutuhannya.
+
+- **KILL** adalah sinyal yang tidak bisa diblokir dan langsung menghentikan proses di tingkat kernel. Proses tidak dapat menangkap atau menangani sinyal ini.
+- **INT** dikirim oleh driver terminal saat pengguna menekan kombinasi tombol tertentu. Sinyal ini meminta proses untuk menghentikan operasi yang sedang berjalan. Program sederhana biasanya keluar saat menerima sinyal ini, sedangkan program dengan antarmuka interaktif (seperti shell) sebaiknya menghentikan tugasnya, membersihkan status, lalu menunggu input pengguna kembali.
+- **TERM** adalah permintaan untuk mengakhiri eksekusi secara keseluruhan. Proses yang menerima sinyal ini sebaiknya membersihkan statusnya sebelum keluar.
+- **HUP** dikirim ke suatu proses ketika terminal yang mengontrolnya ditutup. Awalnya digunakan untuk menandakan terputusnya koneksi telepon, tetapi sekarang sering digunakan untuk meminta proses daemon berhenti dan memulai ulang guna menerapkan konfigurasi baru. Cara proses merespons sinyal ini tergantung pada jenis prosesnya.
+- **QUIT** memiliki fungsi serupa dengan TERM, tetapi jika tidak ditangani, secara default akan menghasilkan core dump. Beberapa program menggunakan sinyal ini untuk tujuan lain sesuai kebutuhannya.
+
 #### kill: mengirim sinyal
 Perintah **kill** biasanya digunakan untuk menghentikan proses. Secara default, perintah ini mengirim sinyal **TERM**, tetapi bisa juga digunakan untuk mengirim sinyal lain. Pengguna biasa hanya bisa menghentikan proses miliknya sendiri, sedangkan root bisa menghentikan proses apa pun.
 Format penggunaan:
-kill [-sinyal] pid
+
+    kill [-sinyal] pid
 
 sinyal: nomor atau nama sinyal yang dikirim.
 pid: ID proses yang ingin dihentikan.
 Jika **kill** dijalankan tanpa menyertakan nomor sinyal, proses mungkin tidak langsung berhenti karena sinyal TERM bisa ditangkap atau diabaikan. Namun, jika menggunakan **kill -9 pid**, proses pasti akan dihentikan karena sinyal KILL tidak bisa ditangkap, diblokir, atau diabaikan.
+
 **killall** : Menghentikan Proses Berdasarkan Nama
 Perintah killall digunakan untuk menghentikan semua proses dengan nama tertentu, bukan berdasarkan PID. Namun, tidak semua sistem memiliki perintah ini.
 Contoh:
-killall firefox
+
+    killall firefox
 
 (perintah ini akan menghentikan semua proses dengan nama firefox)
+
 **pkill** : Versi Lebih Fleksibel dari killall
 Perintah **pkill** mirip dengan **killall**, tetapi memiliki lebih banyak opsi.
+
 Contoh:
-pkill -u abdoufermat
+
+    pkill -u abdoufermat
+
 (perintah ini akan menghentikan semua proses milik pengguna abdoufermat)
 
 ### PS: Proses Pemantauan
 Perintah **ps** merupakan alat penting bagi administrator sistem untuk memantau proses yang berjalan. Meskipun tampilan dan argumen **ps** bisa berbeda di tiap sistem, informasi yang ditampilkan tetap serupa.
 Dengan**ps**, pengguna dapat melihat PID (Process ID), UID (User ID), prioritas proses, dan terminal yang mengontrol proses. Selain itu, perintah ini juga menampilkan jumlah memori yang digunakan, waktu CPU yang telah dipakai, serta status proses (seperti berjalan, berhenti, atau dalam mode tidur).
 Untuk melihat gambaran umum proses dalam sistem, gunakan perintah:
-ps aux
 
-a: Menampilkan semua proses dari berbagai pengguna.
-u: Menampilkan detail lengkap tentang setiap proses.
-x: Menampilkan proses yang tidak terkait dengan terminal tertentu.
+    ps aux
+
+- a: Menampilkan semua proses dari berbagai pengguna.
+- u: Menampilkan detail lengkap tentang setiap proses.
+- x: Menampilkan proses yang tidak terkait dengan terminal tertentu.
+
+<img src="images/2.jpg">
+<img src="images/3.png">
+   
+
 Satu set argumen lain yang berguna adalah lax, yang memberikan lebih banyak informasi teknis tentang proses. lax sedikit lebih cepat daripada aux karena tidak perlu menyelesaikan nama pengguna dan grup
 
- <img src="images/2.jpg">
-  <img src="images/3.png">
    <img src="images/4.jpg">
 
 Untuk mencari proses tertentu, Anda bisa menggunakan grep untuk memfilter output ps.
@@ -122,6 +136,7 @@ atau pidof.
 
 Perintah **top** menampilkan informasi sistem secara real-time, termasuk ringkasan sistem dan daftar proses yang berjalan. Pengguna bisa mengatur tampilan informasi ini dan menyimpannya agar tetap berlaku setelah restart.
 Perintah **htop** adalah versi interaktif dari **top**, memungkinkan pengguna menggulir tampilan secara vertikal dan horizontal untuk melihat semua proses beserta perintah lengkapnya. **htop** memiliki antarmuka yang lebih intuitif dan fitur tambahan untuk pengelolaan proses.
+
 ### Nice dan renice: mengubah prioritas proses
 Nice adalah nilai yang menentukan prioritas proses dalam penggunaan CPU. Nilainya berkisar antara -20 hingga +19 di Linux, di mana nilai lebih rendah berarti prioritas lebih tinggi. Proses dengan nilai nice tinggi memiliki prioritas rendah, sedangkan nilai nice rendah mendapat prioritas tinggi.
 Jika ada proses berat yang dijalankan di latar belakang, sebaiknya diberi nilai nice tinggi agar tidak mengganggu proses lain. Perintah nice digunakan untuk memulai proses dengan nilai nice tertentu, sementara renice digunakan untuk mengubah nilai nice proses yang sedang berjalan.
@@ -192,6 +207,8 @@ Linux → /var/spool/cron
 FreeBSD → /var/cron/tabs
 Sebuah berkas crontab memiliki lima field untuk menentukan hari, tanggal dan waktu yang diikuti oleh perintah yang akan dijalankan pada interval tersebut.
 
+```bash
+
 *     *     *     *     *  command to be executed
 -     -     -     -     -
 |     |     |     |     |
@@ -201,7 +218,11 @@ Sebuah berkas crontab memiliki lima field untuk menentukan hari, tanggal dan wak
 |     +----------- hour (0 - 23)
 +------------- min (0 - 59)
 
+```
+
 Beberapa contoh:
+
+```bash
 
     # Run a command at 2:30am every day
     30 2 * * * command
@@ -211,6 +232,9 @@ Beberapa contoh:
 
     # Run a Python script every 1st of the month at 2:30am
     30 2 1 * * /usr/bin/python3 /path/to/script.py
+
+```
+
 
 Berikut jadwalnya: 0,30 * 13 * 5 berarti bahwa perintah akan dijalankan pada 0 dan 30 menit setelah jam ke-13 pada hari Jumat. Jika Anda ingin menjalankan perintah setiap 30 menit, Anda dapat menggunakan jadwal berikut: */30 * * * *
 
