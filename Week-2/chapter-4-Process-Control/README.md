@@ -284,14 +284,21 @@ Anda dapat secara otomatis mengirim email output laporan harian atau hasil eksek
 
 Sebagai contoh:
 
+
+```bash
+
     30 4 25 * * /usr/bin/mail -s "Monthly report"
         abdou@admin.com%Receive the monthly report for the month of July!%%Sincerely,%cron%
+
+```
 
 ####  Membersihkan sistem berkas
 
 Anda dapat menggunakan pengatur waktu cron atau systemd untuk menjalankan skrip yang membersihkan sistem berkas. Sebagai contoh, Anda dapat menggunakan skrip untuk membersihkan isi direktori sampah setiap hari pada tengah malam.
 
+```bash
     0 0 * * * /usr/bin/find /home/abdou/.local/share/Trash/files -mtime +30 -exec /bin/rm -f {} \;
+```
 
 #### Memutar file log
 Rotasi log adalah proses membagi file log berdasarkan ukuran atau tanggal agar versi lama tetap tersedia. Karena sifatnya yang berulang, rotasi log cocok untuk dijadwalkan secara otomatis.
