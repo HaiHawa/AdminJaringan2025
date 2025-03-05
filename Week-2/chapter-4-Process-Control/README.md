@@ -18,6 +18,27 @@
 
 ## Chapter 4: Process Control
 
+### Daftar Isi
+
+- [Komponen-komponen Proses](#komponen-komponen-proses)
+- [PID: nomor ID proses](#pid-nomor-id-proses)
+- [PPID: nomor ID proses induk](#ppid-nomor-id-proses-induk)
+- [UID dan EUID: ID pengguna dan ID pengguna yang efektif](#uid-dan-euid-id-pengguna-dan-id-pengguna-yang-efektif)
+- [Daur hidup sebuah proses](#daur-hidup-sebuah-proses)
+- [Sinyal](#sinyal)
+- [Kill: mengirim sinyal](#kill-mengirim-sinyal)
+- [PS: Proses Pemantauan](#ps-proses-pemantauan)
+- [Pemantauan interaktif dengan top](#pemantauan-interaktif-dengan-top)
+- [Nice dan renice: mengubah prioritas proses](#nice-dan-renice:-mengubah-prioritas-proses)
+- [Sistem berkas /proc](#sistem-berkas-proc)
+- [Strace dan truss](#strace-dan-truss)
+- [Proses yang berhenti](#proses-yang-berhenti)
+- [Proses berkala](#Proses-berkala)
+- [manajemen crontab](#manajemen-crontab)
+- [Pengatur waktu systemd](#pengatur-waktu-systemd)
+- [Penggunaan umum untuk tugas terjadwal](#penggunaan-umum-untuk-tugas-terjadwal)
+- [Kesimpulan](#kesimpulan)
+
 ### Komponen-komponen Proses
 Sebuah proses terdiri dari sebuah ruang alamat dan sekumpulan struktur data di dalam kernel. Ruang alamat adalah sekumpulan halaman memori yang telah ditandai oleh kernel untuk digunakan oleh proses, biasanya berukuran 4KiB atau 8KiB untuk menyimpan kode, data, dan tumpukan. Kernel menggunakan struktur data untuk melacak status proses, prioritas, parameter penjadwalan proses dan sebagainya.
 Proses adalah wadah yang berisi sumber daya seperti memori, deskriptor file, dan atribut yang menggambarkan keadaan proses, dikelola oleh kernel untuk program yang berjalan.
@@ -309,7 +330,13 @@ Beberapa perhitungan yang memerlukan waktu lama sebaiknya dijalankan sebagai pro
 #### Mencadangkan dan mencerminkan
 Tugas terjadwal dapat digunakan untuk mencadangkan direktori ke sistem remote secara otomatis. Mirror adalah salinan identik dari sistem file atau direktori yang disimpan di sistem lain. Mirror bisa berfungsi sebagai cadangan atau untuk mendistribusikan file ke beberapa sistem. Dengan menjalankan rsync secara berkala, mirror dapat tetap diperbarui.
 
+### Kesimpulan
 
+- Kontrol proses dalam sistem operasi mencakup berbagai aspek seperti ruang alamat, status, prioritas, dan sumber daya yang digunakan. 
+- Setiap proses memiliki PPID (proses induk), UID, dan EUID yang menentukan hak aksesnya.
+- Siklus hidup proses dimulai saat sistem diinisialisasi menggunakan **init** atau **systemd** dan berakhir ketika proses dihentikan dengan sinyal seperti **KILL, TERM, atau HUP**. 
+- Untuk memantau proses, dapat digunakan perintah seperti **ps**, **top**, dan **htop**, sedangkan prioritas proses dapat dikelola menggunakan *nice* dan *renice*
+- Direktori **/proc** dalam sistem berkas virtual menyimpan informasi tentang proses yang sedang berjalan, dan **strace** berguna untuk melacak panggilan sistem saat debugging.
 
 
 
