@@ -48,7 +48,7 @@ Gunakan **lsof** untuk melihat daftar proses yang mengakses sistem berkas:
 
 Mengetahui Proses yang Menggunakan Sistem Berkas
 
-# Find out which processes are using the filesystem
+    Find out which processes are using the filesystem
 
     abdou@debian:~$ lsof /home/abdou
 
