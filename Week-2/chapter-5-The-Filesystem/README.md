@@ -146,13 +146,9 @@ Contoh:
 
 ## Atribut file
 
-Setiap file memiliki 9 bit hak akses yang menentukan izin membaca (r), menulis (w), dan mengeksekusi (x) untuk pemilik, grup, dan lainnya.
+Setiap file memiliki 9 bit hak akses yang menentukan izin membaca (r), menulis (w), dan mengeksekusi (x) untuk pemilik, grup, dan lainnya. Ditambah 3 bit khusus, yang memengaruhi eksekusi program, membentuk 12 bit mode file. 
 
-Ditambah 3 bit khusus, yang memengaruhi eksekusi program, membentuk 12 bit mode file.
-
-4 bit tipe file ditetapkan saat file dibuat dan tidak dapat diubah.
-
-Perintah chmod digunakan oleh pemilik file atau superuser untuk mengubah mode file.
+Kedua belas bit mode ini disimpan bersama dengan empat bit informasi tipe file. Empat bit tipe file ditetapkan ketika file dibuat dan tidak dapat diubah, tetapi pemilik file dan superuser dapat memodifikasi dua belas bit mode dengan perintah chmod.
 
  <img src="images/5.3.jpg">
 
@@ -275,14 +271,17 @@ Sebagai contoh, umask 027 mengizinkan rwx untuk pemilik, rx untuk grup, dan tida
 
 
 Model perizinan Unix tradisional efektif tetapi memiliki keterbatasan, seperti tidak bisa menetapkan beberapa pemilik pada satu file atau memberikan izin berbeda kepada kelompok pengguna tertentu.
+
 Access Control Lists (ACL) memperluas model perizinan Unix tradisional dengan memungkinkan:
-Beberapa pemilik pada satu file.
-Izin yang berbeda untuk kelompok pengguna pada file yang berbeda.
+- Beberapa pemilik pada satu file.
+- Izin yang berbeda untuk kelompok pengguna pada file yang berbeda.
+
 Elemen dalam ACL:
-ACE (Access Control Entry): Setiap aturan dalam ACL yang terdiri dari:
-Penentu pengguna/grup → Bisa berupa nama pengguna, grup, atau kata kunci khusus seperti pemilik atau lainnya.
-Topeng izin → Sekumpulan izin (baca, tulis, eksekusi).
-Tipe ACE → Izinkan atau Tolak.
+- ACE (Access Control Entry): Setiap aturan dalam ACL yang terdiri dari:
+- Penentu pengguna/grup → Bisa berupa nama pengguna, grup, atau kata kunci khusus seperti pemilik atau lainnya.
+- Topeng izin → Sekumpulan izin (baca, tulis, eksekusi).
+- Tipe ACE → Izinkan atau Tolak.
+
 Perintah ACL:
 Menampilkan ACL sebuah file:
 
@@ -293,16 +292,16 @@ Menetapkan izin ACL pada file:
     setfacl -m u:abdou:rw /etc/passwd  
 
 Jenis ACL:
-ACL POSIX → ACL tradisional di Unix/Linux.
-ACL NFSv4 → Versi lebih modern dan fleksibel.
+- ACL POSIX → ACL tradisional di Unix/Linux.
+- ACL NFSv4 → Versi lebih modern dan fleksibel.
 
 
 ### Implementasi ACL 
 
 ACL dapat diterapkan oleh berbagai komponen sistem, seperti:
-Kernel → Mengelola ACL untuk semua sistem berkas.
-Sistem Berkas → Setiap sistem berkas menangani ACL secara independen.
-Perangkat Lunak Tingkat Lebih Tinggi → Misalnya, server NFS dan SMB yang menangani ACL secara khusus.
+- Kernel → Mengelola ACL untuk semua sistem berkas.
+- Sistem Berkas → Setiap sistem berkas menangani ACL secara independen.
+- Perangkat Lunak Tingkat Lebih Tinggi → Misalnya, server NFS dan SMB yang menangani ACL secara khusus.
 
 ### POSIX ACLs
 
