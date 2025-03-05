@@ -347,7 +347,7 @@ other::r--
 NFSv4 ACL adalah versi ACL yang lebih canggih dibandingkan POSIX ACL. Didukung oleh Linux dan FreeBSD, NFSv4 ACL memiliki fitur tambahan, seperti ACL default yang secara otomatis menetapkan izin untuk file dan direktori baru.
 
 
-# Kesimpulan
+## Kesimpulan
 - Sistem file di Unix dan Linux mendukung berbagai jenis berkas, termasuk berkas biasa, direktori, perangkat karakter dan blok, serta tautan simbolik. Setiap berkas memiliki hak akses yang menentukan siapa yang dapat membaca, menulis, atau mengeksekusinya.  
 
 - Model izin tradisional Unix menggunakan bit izin untuk pemilik, grup, dan pengguna lain. Namun, untuk kontrol yang lebih fleksibel, Access Control Lists (ACL) memungkinkan pengaturan izin yang lebih kompleks, seperti menetapkan beberapa pemilik atau memberikan izin berbeda kepada berbagai grup pengguna.  
