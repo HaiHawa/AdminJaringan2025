@@ -29,7 +29,7 @@
 - [Kill: mengirim sinyal](#kill-mengirim-sinyal)
 - [PS: Proses Pemantauan](#ps-proses-pemantauan)
 - [Pemantauan interaktif dengan top](#pemantauan-interaktif-dengan-top)
-- [Nice dan renice: mengubah prioritas proses](#nice-dan-renice:-mengubah-prioritas-proses)
+- [Nice dan renice: mengubah prioritas proses](#nice-dan-renice-mengubah-prioritas-proses)
 - [Sistem berkas /proc](#sistem-berkas-proc)
 - [Strace dan truss](#strace-dan-truss)
 - [Proses yang berhenti](#proses-yang-berhenti)
