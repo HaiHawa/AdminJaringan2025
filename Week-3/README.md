@@ -18,9 +18,9 @@
 
 ### Daftar Isi
 
-1. [Install dan Konfigurasi Network Time Protocol](#instalasi-NTP-Client)
-2. [Instalasi dan Konfigurasi Samba](instalasi-dan-konfigurasi-samba)
-3. [Package Management](#package-management)
+1. [Install dan Konfigurasi Network Time Protocol](#a-instalasi-ntp-client)
+2. [Instalasi dan Konfigurasi Samba](#b-instalasi-dan-konfigurasi-sambainstalasi-dan-konfigurasi-samba)
+3. [Package Management](#c-rangkuman-tentang-package-management)
 
 ## A. Instalasi NTP Client 
 
