@@ -16,7 +16,13 @@
 
 ---
 
-### A. Instalasi NTP Client 
+### Daftar Isi
+
+1. [Install dan Konfigurasi Network Time Protocol](#instalasi-NTP-Client)
+2. [Instalasi dan Konfigurasi Samba](instalasi-dan-konfigurasi-samba)
+3. [Package Management](#package-management)
+
+## A. Instalasi NTP Client 
 
   Network Time Protocol (NTP) NTP Client (Network Time Protocol Client) adalah perangkat keras atau perangkat lunak yang digunakan untuk menyinkronkan waktu sistem dengan server waktu melalui protokol NTP. Protokol ini berfungsi untuk memastikan jam komputer tetap akurat dengan menyelaraskannya melalui jaringan, biasanya dengan tingkat presisi hingga milidetik.
 
@@ -38,7 +44,8 @@
     <img src="images/4.png">
 
 
-### B. Instalasi dan konfigurasi Samba 
+
+## B. Instalasi dan konfigurasi Samba 
 
 Samba merupakan perangkat lunak open-source yang berfungsi untuk berbagi file dan printer antara sistem operasi Windows dengan sistem berbasis Unix seperti Linux dan macOS. Samba menggunakan protokol SMB/CIFS (Server Message Block/Common Internet File System), yang banyak digunakan dalam jaringan Windows untuk keperluan berbagi sumber daya. Berikut ini adalah langkah-langkah konfigurasinya.
 
@@ -120,7 +127,7 @@ Samba merupakan perangkat lunak open-source yang berfungsi untuk berbagi file da
   <img src="images/27.png">
 
 
-#### C. Buat rangkuman tentang package management.
+## C. Rangkuman tentang package management.
 
 **Package Management**
 
