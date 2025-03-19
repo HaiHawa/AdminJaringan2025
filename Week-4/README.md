@@ -14,7 +14,15 @@
 </div>
 <br>
 
----
+## Daftar Isi
+
+1. [Ekosistem Internet dan DNS Concept](#ekosistem-internet-dan-dns-concept)
+2. [Hirarki DNS](#hirarki-dalam-dns)
+3. [Cara Kerja DNS](#cara-kerja-dns)
+3. [Instalasi dan Konfigurasi bind9](#instalasi--konfigurasi-bind9) 
+4. [Konfigurasi Zone Files](#konfigurasi-zone-files)
+5. [Verify Resolution](#bind-verify-resolution)
+6. [Referensi](#referensi)
 
 ## Ekosistem Internet dan DNS Concept
 
@@ -117,7 +125,9 @@ DNS disusun dalam struktur hierarki seperti pada gambar berikut. Pada tingkat pa
 
 ## Instalasi & Konfigurasi bind9
 
-### Konfigurasi Jaringan Internal
+#### Konfigurasi Jaringan Internal
+
+Install bind9
 
 <img src="images/13.png">
 
@@ -135,19 +145,20 @@ Menambahkan file konfigurasi baru **named.conf.internal-zones** ke dalam file ut
 <img src="images/18.png">
 
 
-Konfigurasi **ACL internal-network** untuk jaringan **192.168.80.0/24** mengatur akses ke layanan DNS. Hanya **localhost** dan jaringan internal yang diizinkan untuk melakukan **query (allow-query)**, sedangkan **transfer zona (allow-transfer)** hanya diperbolehkan untuk **localhost**. Resolusi domain eksternal diaktifkan melalui **pencarian rekursif (recursion yes)**, validasi **DNSSEC** dikonfigurasi secara otomatis **(dnssec-validation auto)**, dan **BIND** disetel untuk menerima koneksi **IPv6** dengan **(listen-on-v6 { any; })**.
+Konfigurasi **ACL internal-network** untuk jaringan **192.168.100.0/24** mengatur akses ke layanan DNS. Hanya **localhost** dan jaringan internal yang diizinkan untuk melakukan **query (allow-query)**, sedangkan **transfer zona (allow-transfer)** hanya diperbolehkan untuk **localhost**. Resolusi domain eksternal diaktifkan melalui **pencarian rekursif (recursion yes)**, validasi **DNSSEC** dikonfigurasi secara otomatis **(dnssec-validation auto)**, dan **BIND** disetel untuk menerima koneksi **IPv6** dengan **(listen-on-v6 { any; })**.
+
 
 #### Konfigurasi Zona DNS di BIND
 
-
 <img src="images/19.png">
+
 <img src="images/20.png">
 
 1. **Zona Forward (kelompok5.home)**  
 Zona ini berfungsi untuk mengonversi nama domain menjadi alamat IP dan datanya tersimpan dalam **/etc/bind/kelompok5.home.lan**. Berperan sebagai **master (utama)**, sehingga server ini menjadi sumber resmi informasi **DNS** untuk domain tersebut. Selain itu, **pembaruan dinamis tidak diperbolehkan** dengan konfigurasi **allow-update { none; };**.  
 
-2. **Zona Reverse (80.168.192.in-addr.arpa)**  
-Zona ini digunakan untuk **menerjemahkan alamat IP menjadi nama domain (reverse lookup)** dengan data yang disimpan dalam **/etc/bind/80.168.192.db**. Sama seperti zona forward, zona ini juga berperan sebagai **master**, dengan **update dinamis yang dinonaktifkan**.
+2. **Zona Reverse (100.168.192.in-addr.arpa)**  
+Zona ini digunakan untuk **menerjemahkan alamat IP menjadi nama domain (reverse lookup)** dengan data yang disimpan dalam **/etc/bind/100.168.192.db**. Sama seperti zona forward, zona ini juga berperan sebagai **master**, dengan **update dinamis yang dinonaktifkan**.
 
 #### Konfigurasi opsi BIND untuk menggunakan hanya IPv4 dan menonaktifkan IPv6.
 
@@ -156,20 +167,20 @@ Zona ini digunakan untuk **menerjemahkan alamat IP menjadi nama domain (reverse 
 
 Untuk mengonfigurasi BIND agar hanya menggunakan IPv4, edit file /etc/default/named dan tambahkan opsi OPTIONS="-u bind -4". Opsi ini memastikan BIND berjalan sebagai pengguna bind dan hanya menggunakan IPv4, mengabaikan IPv6 untuk menghindari kemungkinan error pada jaringan yang tidak mendukung IPv6.
 
-#### Konfigurasi Zone Files
+### Konfigurasi Zone Files
 
 <img src="images/23.png">
 <img src="images/24.png">
 
-Konfigurasi **forward lookup** pada **BIND DNS Server** untuk jaringan **192.168.80.0/24** dengan domain **kelompok5.home** memungkinkan server memetakan nama domain ke alamat IP dengan menetapkan file zona sebagai **master** serta mendefinisikan pemetaan nama host.
+Konfigurasi **forward lookup** pada **BIND DNS Server** untuk jaringan **192.168.100.0/24** dengan domain **kelompok5.home** memungkinkan server memetakan nama domain ke alamat IP dengan menetapkan file zona sebagai **master** serta mendefinisikan pemetaan nama host.
 
 
 <img src="images/25.png">
 <img src="images/26.png">
 
-Konfigurasi **reverse lookup** pada **BIND DNS Server** untuk jaringan **192.168.80.0/24** dengan domain **kelompok5.home** dilakukan dengan membuat file zona **/etc/bind/80.168.192.db**, menetapkannya sebagai **master** di **/etc/bind/named.conf.local**, kemudian melakukan verifikasi dan merestart **BIND** agar perubahan dapat diterapkan.
+Konfigurasi **reverse lookup** pada **BIND DNS Server** untuk jaringan **192.168.100.0/24** dengan domain **kelompok5.home** dilakukan dengan membuat file zona **/etc/bind/100.168.192.db**, menetapkannya sebagai **master** di **/etc/bind/named.conf.local**, kemudian melakukan verifikasi dan merestart **BIND** agar perubahan dapat diterapkan.
 
-#### BIND: Verify Resolution
+### BIND: Verify Resolution
 
 Restart BIND untuk menerapkan perubahan dengan command
 
@@ -184,7 +195,7 @@ File **/etc/resolv.conf** pada sistem **Linux** berfungsi untuk menentukan **DNS
 
 Dengan mengubah **nameserver** menjadi **192.168.80.193**, maka:  
 
-- Sistem akan menggunakan **DNS Server sendiri** (BIND di **192.168.80.193**).  
+- Sistem akan menggunakan **DNS Server sendiri** (BIND di **192.168.100.165**).  
 - Prioritas pencarian **DNS** diarahkan ke **server lokal** sebelum mencari ke **DNS eksternal**.  
 - Memungkinkan sistem mengenali dan menyelesaikan **domain lokal** yang hanya tersedia di **DNS internal**.
 
