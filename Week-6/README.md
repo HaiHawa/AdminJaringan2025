@@ -54,11 +54,11 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
     <img src="images/7.png">
 
-5. Unduh package iptables dan iptables-persistent dengan menggunakan perintah sudo apt-get install iptables iptables-persistent.
+5. Unduh package iptables dan iptables-persistent dengan menggunakan perintah `apt-get install iptables iptables-persistent`
 
     <img src="images/8.png">
 
-6. Buka file /etc/iptables/rules.v4 dengan perintah sudo nano -l -w /etc/iptables/rules.v4 lalu tambahkan baris kode berikut:
+6. Buka file /etc/iptables/rules.v4 dengan perintah `nano -l -w /etc/iptables/rules.v4` lalu tambahkan baris kode berikut:
 
   ```bash
 *nat
@@ -89,7 +89,7 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
     <img src="images/13.png">
 
-2. Setelah proses instalasi selesai, buka file `/etc/ntpsec/ntp.conf` dengan perintah `sudo nano /etc/ntpsec/ntp.conf`, lalu beri tanda komentar (#) pada keempat baris pool yang ada dan tambahkan server NTP dari Indonesia yang bisa diperoleh melalui situs [https://www.ntppool.org/en/zone/id](https://www.ntppool.org/en/zone/id).
+2. Setelah proses instalasi selesai, buka file `/etc/ntpsec/ntp.conf` dengan perintah `nano /etc/ntpsec/ntp.conf`, lalu beri tanda komentar (#) pada keempat baris pool yang ada dan tambahkan server NTP dari Indonesia yang bisa diperoleh melalui situs [https://www.ntppool.org/en/zone/id](https://www.ntppool.org/en/zone/id).
 
     <img src="images/14.png">
 
