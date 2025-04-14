@@ -60,23 +60,23 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
 6. Buka file /etc/iptables/rules.v4 dengan perintah `nano -l -w /etc/iptables/rules.v4` lalu tambahkan baris kode berikut:
 
-  ```bash
-*nat
- -A POSTROUTING -o enp0s3 -j MASQUERADE
- COMMIT
+    ```bash
+    *nat
+    -A POSTROUTING -o enp0s3 -j MASQUERADE
+    COMMIT
 
- *filter
- -A INPUT -i lo -j ACCEPT
- # allow ssh, so that we do not lock ourselves
- -A INPUT -i enp0s3 -p tcp -m tcp --dport 22 -j ACCEPT
- # allow incoming traffic to the outgoing connections,
- # et al for clients from the private network
- -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
- # prohibit everything else incoming
- -A INPUT -i enp0s3 -j DROP
- COMMIT
-```  
-<img src="images/9.png">
+    *filter
+    -A INPUT -i lo -j ACCEPT
+    # allow ssh, so that we do not lock ourselves
+    -A INPUT -i enp0s3 -p tcp -m tcp --dport 22 -j ACCEPT
+    # allow incoming traffic to the outgoing connections,
+    # et al for clients from the private network
+    -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+    # prohibit everything else incoming
+    -A INPUT -i enp0s3 -j DROP
+    COMMIT
+    ```  
+    <img src="images/9.png">
 
 7. Jalankan perintah `iptables-restore < /etc/iptables/rules.v4` untuk mengembalikan aturan-aturan iptables dari file konfigurasi yang telah disimpan sebelumnya.
 
