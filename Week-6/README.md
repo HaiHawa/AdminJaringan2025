@@ -141,23 +141,23 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
 2. Konfigurasi BIND untuk network internal dalam named.conf menggunakan perintah `nano /etc/bind/named.conf` untuk menambahkan include "/etc/bind/named.conf.internal-zones";
 
-<img src="images/24.png">
+    <img src="images/24.png">
 
 3. Konfigurasi BIND untuk network internal dalam named.conf.options menggunakan perintah `nano /etc/bind/named.conf.options` untuk menambahkan:
 
-```bash
-        acl internal-network {
-                192.168.200.0/24;
-        };
-...
-...
-        allow-query { localhost; internal-network; };
-        allow-transfer { localhost; };
-        listen-on port 53 { any; };
-        recursion yes;
-```
+    ```bash
+            acl internal-network {
+                    192.168.200.0/24;
+            };
+    ...
+    ...
+            allow-query { localhost; internal-network; };
+            allow-transfer { localhost; };
+            listen-on port 53 { any; };
+            recursion yes;
+    ```
 
-<img src="images/25.png">
+    <img src="images/25.png">
 
 4. Konfigurasi BIND untuk network internal dalam named.conf.internal-zones menggunakan perintah `nano /etc/bind//etc/bind/named.conf.internal-zones`
 
