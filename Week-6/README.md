@@ -15,7 +15,7 @@
 
 -----
 
-#### Daftar Isi
+### Daftar Isi
 1. [Konfigurasi Virtual Machine No-GUI (VM 1)](#konfigurasi-virtual-machine-no-gui-vm-1)
 2. [Konfigurasi NTP Client](#konfigurasi-ntp-client)
 3. [Konfigurasi Samba](#konfigurasi-samba) 
@@ -24,7 +24,7 @@
 
 Praktikum ini menggunakan dua VM Debian, satu tanpa GUI (VM1) dan satu dengan GUI (VM2). Tujuannya adalah menghubungkan kedua VM. VM1 memakai bridge network, sedangkan VM2 memakai internal network dan dikonfigurasi dengan Samba. 
 
-### Konfigurasi Virtual Machine No-GUI (VM 1)
+## Konfigurasi Virtual Machine No-GUI (VM 1)
 
 Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged network dan adapter 2 menjadi internal network. Tekan OK untuk menyimpan perubahan.
 
@@ -83,7 +83,7 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
     <img src="images/10.png">
 
 
-### Konfigurasi NTP Client
+## Konfigurasi NTP Client
 
 1. Instal NTP Client menggunakan perintah `apt -y install ntpsec`
 
@@ -105,7 +105,7 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
     <img src="images/16.png">
 
-### Konfigurasi Samba
+## Konfigurasi Samba
 
 1. unduh package samba dengan menggunakan perintah `apt -y install samba`
 
@@ -133,7 +133,7 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
     <img src="images/33.png">
 
-###  Konfigurasi Bind9 (DNS)
+##  Konfigurasi Bind9 (DNS)
 
 1. Instalasi BIND menggunakan perintah `apt -y install bind9 bind9utils`
 
@@ -181,7 +181,7 @@ Mengatur Network pada debidora-nogui (VM 1), Ubah adapter 1 menjadi bridged netw
 
 8. Terakhir lakukan Restart BIND untuk menyimpan perubahan menggunakan `systemctl restart named`
 
-### Konfigurasi Virtual Machine GUI (VM 2)
+## Konfigurasi Virtual Machine GUI (VM 2)
 
 1. Konfigurasi jaringan Wired menjadi IP statik seperti yang tertera pada gambar. Lalu klik apply.
 
