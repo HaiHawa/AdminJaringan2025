@@ -15,4 +15,59 @@
 
 -----
 
+### Daftar Isi
+1. [Tugas](#tugas) 
+2. [Konfigurasi Mikrotik](#konfigurasi-mikrotik) 
+
+## Tugas
+<img src="images/tgs.png">
+
+## Konfigurasi Mikrotik
+
+
+1. Cek ip address
+  
+    <img src="images/1.png">
+
+2. Melakukan apt update, untuk Menyegarkan/memperbarui daftar paket di repository
+  
+    <img src="images/2.jpg">
+
+3. Install wine untuk menjalankan aplikasi Windows (.exe) di sistem operasi Linux.
+
+    <img src="images/3.jpg">
+
+4. Melakukan instalisasi winbox melalui link      `https://mikrotik.com/download` 
+
+    Disini saya menginstal winbox Windows (64 bit)
+    <img src="images/0.png">
+
+5. Setelah itu buka winbox menggunakan perintah `wine winbox64.exe`
+
+    <img src="images/4.png">
+
+6. Setelah berhasil membuka Winbox, melakukan connect ke perangkat MikroTik menggunakan IP address 10.252.108.55.
+
+    Setelah berhasil connect maka akan muncul halaman dibawah ini:
+
+    <img src="images/5.png">
+
+7. Buka New Terminal, lalu cek `ip route pr` untuk menampilkan daftar rute (routes) yang digunakan oleh router untuk meneruskan paket ke tujuan tertentu.
+
+    <img src="images/6.png">
+
+8. Lalu Menambahkan IP device pada kelompok lain beserta IP gateaway-nya dengan perintah `ip route add dst-address=<tujuan-network> gateway=<IP-router>` 
+
+    <img src="images/7.png">
+   
+
+9. Setelah selesai menambahkan routing, lakukan testing ping menggunakan perintah `ping `<IP-dalam-network>`
+
+    <img src="images/8.png">
+    <img src="images/9.png">
+    <img src="images/10.png">
+
+    Jika pengujian koneksi menggunakan perintah ping berhasil dilakukan tanpa munculnya pesan request timed out atau kesalahan lainnya, maka dapat disimpulkan bahwa komunikasi antar perangkat dari masing-masing kelompok telah berhasil terjalin. Namun, pada saat melakukan ping ke perangkat nomor 3 dan 8, muncul pesan "net unreachable", yang menandakan bahwa jalur menuju jaringan tersebut tidak dapat dijangkau. Hal ini biasanya disebabkan oleh konfigurasi routing yang belum tepat, perangkat yang belum aktif, atau kesalahan pada pengalamatan jaringan.
+
+
 
