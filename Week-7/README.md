@@ -67,7 +67,7 @@
     <img src="images/7.png">
    
 
-9. Setelah selesai menambahkan routing, lakukan testing ping menggunakan perintah `ping `<IP-dalam-network>`
+9. Setelah selesai menambahkan routing, lakukan testing ping menggunakan perintah `ping <IP-dalam-network>`
 
     <img src="images/8.png">
     <img src="images/9.png">
