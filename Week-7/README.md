@@ -24,7 +24,7 @@
 
 - Pada tahap awal konfigurasi berdasarkan skema  diatas, dilakukan penyambungan antar perangkat MikroTik dari masing-masing kelompok. Tujuan dari langkah ini adalah memastikan bahwa setiap laptop yang tergabung dalam jaringan LAN dapat saling terhubung dan berkomunikasi, terutama dalam melakukan uji koneksi (ping) ke alamat IP kelompok lain.
 
-- Untuk melakukan pengujian tersebut, salah satu laptop dari tiap kelompok perlu tersambung ke jaringan LAN, lalu menjalankan perintah ping untuk menguji konektivitas antar jaringan. Dalam percobaan ini, digunakan rentang IP 10.252.108.5x, di mana x merupakan nomor kelompok. Karena saya berada di kelompok 5, maka IP MikroTik yang digunakan adalah 10.252.108.55.
+- Untuk melakukan pengujian tersebut, salah satu laptop dari tiap kelompok perlu tersambung ke jaringan LAN, lalu menjalankan perintah ping untuk menguji konektivitas antar jaringan. Dalam percobaan ini, digunakan rentang IP 10.252.108.5x, di mana x merupakan nomor kelompok. Karena saya berada di kelompok 5, maka IP MikroTik yang digunakan adalah 10.252.108.55
 
 - Setelah perangkat berhasil terhubung ke jaringan melalui kabel LAN, pengujian koneksi dapat dilakukan melalui Command Prompt di sistem operasi Windows dengan menggunakan perintah ping terhadap IP tujuan.  
 
@@ -52,7 +52,7 @@
 
     <img src="images/4.png">
 
-6. Setelah berhasil membuka Winbox, melakukan connect ke perangkat MikroTik menggunakan IP address 10.252.108.55.
+6. Setelah berhasil membuka Winbox, melakukan connect ke perangkat MikroTik menggunakan IP address 10.252.108.55
 
     Setelah berhasil connect maka akan muncul halaman dibawah ini:
 
