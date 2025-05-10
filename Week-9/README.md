@@ -18,6 +18,7 @@
 
 ## Daftar Isi
 
+- [Gambar Topologi](#gambar-topologi-jaringan-internal)
 - [Konfigurasi Bind9](#konfigurasi-bind9)
 - [Konfigurasi Web Server (Apache2)](#konfigurasi-web-server-apache2)
 
@@ -104,7 +105,7 @@ Setelah itu lakukan update
 
     ![App Screenshot](Assets/confenable.jpg)
     
-    Ini digunakan menyembunyikan informasi detail versi Apache pada header HTTP, meningkatkan keamanan.
+    Ini digunakan untuk menyembunyikan informasi detail versi Apache pada header HTTP, meningkatkan keamanan.
     <br>
 
     - DirectoryIndex: Edit /etc/apache2/mods-enabled/dir.conf dan atur urutan file index yang dicari ketika direktori diakses:
@@ -116,7 +117,7 @@ Setelah itu lakukan update
 
     ![App Screenshot](Assets/apache2conf.jpg)
 
-    Ini mencegah munculnya peringatan “Could not reliably determine the server's fully qualified domain name”.
+    untuk mencegah munculnya peringatan “Could not reliably determine the server's fully qualified domain name”.
     <br>
 
     - ServerAdmin: Edit /etc/apache2/sites-enabled/000-default.conf dan ubah baris email admin:
