@@ -103,6 +103,7 @@ Setelah itu lakukan update
     - ServerTokens: Edit dan ubah /etc/apache2/conf-enabled/security.conf
 
     ![App Screenshot](Assets/confenable.jpg)
+    
     Ini digunakan menyembunyikan informasi detail versi Apache pada header HTTP, meningkatkan keamanan.
     <br>
 
@@ -114,6 +115,7 @@ Setelah itu lakukan update
     - ServerName: Edit /etc/apache2/apache2.conf dan tambahkan baris berikut untuk mendefinisikan nama server:
 
     ![App Screenshot](Assets/apache2conf.jpg)
+
     Ini mencegah munculnya peringatan “Could not reliably determine the server's fully qualified domain name”.
     <br>
 
